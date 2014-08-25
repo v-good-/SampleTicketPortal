@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "IPSNorte.Portal.Web", "IPSNorte.Portal.Web\IPSNorte.Portal.Web.vbproj", "{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "IPSNorte.Portal.Lib", "IPSNorte.Portal.Lib\IPSNorte.Portal.Lib.vbproj", "{2EB558D3-7A9D-4468-A2DE-9FA6184D956D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "IPSNorte.Portal.eXpertisObjects", "IPSNorte.Portal.eXpertisObjects\IPSNorte.Portal.eXpertisObjects.vbproj", "{21019C5B-EF3D-42B7-A608-B3F8AF160003}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "IPSNorte.Portal.eXpertisServer", "IPSNorte.Portal.eXpertisServer\IPSNorte.Portal.eXpertisServer.vbproj", "{49216B8E-EA89-458C-B286-EAE5ADE03329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{3CCFDEC9-0496-4E76-BFE0-B5B8826FDB69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal", "Portal", "{2E211DDC-4628-4EBE-B400-3C13FB1509CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{875DDD65-503B-453C-88E7-F5E1C8DC7645}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA3ABD86-5628-4A8C-AF5F-4F1ABD3E4711}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB558D3-7A9D-4468-A2DE-9FA6184D956D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB558D3-7A9D-4468-A2DE-9FA6184D956D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB558D3-7A9D-4468-A2DE-9FA6184D956D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB558D3-7A9D-4468-A2DE-9FA6184D956D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21019C5B-EF3D-42B7-A608-B3F8AF160003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21019C5B-EF3D-42B7-A608-B3F8AF160003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21019C5B-EF3D-42B7-A608-B3F8AF160003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21019C5B-EF3D-42B7-A608-B3F8AF160003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49216B8E-EA89-458C-B286-EAE5ADE03329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49216B8E-EA89-458C-B286-EAE5ADE03329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49216B8E-EA89-458C-B286-EAE5ADE03329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49216B8E-EA89-458C-B286-EAE5ADE03329}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{147A2A6A-1D13-48FC-BA85-2E96BFF4DBDA} = {2E211DDC-4628-4EBE-B400-3C13FB1509CA}
+		{2EB558D3-7A9D-4468-A2DE-9FA6184D956D} = {2E211DDC-4628-4EBE-B400-3C13FB1509CA}
+		{21019C5B-EF3D-42B7-A608-B3F8AF160003} = {875DDD65-503B-453C-88E7-F5E1C8DC7645}
+		{49216B8E-EA89-458C-B286-EAE5ADE03329} = {3CCFDEC9-0496-4E76-BFE0-B5B8826FDB69}
+	EndGlobalSection
+EndGlobal

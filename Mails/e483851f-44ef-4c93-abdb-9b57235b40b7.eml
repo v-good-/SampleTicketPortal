@@ -1,0 +1,17 @@
+X-Sender: no-reply@here.com
+X-Receiver: test1@pasbridge.com
+X-Receiver: support@pasbridge.com
+MIME-Version: 1.0
+From: no-reply@here.com
+To: test1@pasbridge.com
+Cc: support@pasbridge.com
+Date: 25 Aug 2014 18:41:38 +0200
+Subject: Reset Password
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Please reset your password by clicking <a href=3D"http://localhos=
+t:59132/Account/ResetPassword?code=3D9W5xEfRzrF%2B4mCQ%2BiMDaPMPP=
+Tvm%2BGeGnM7WDoGHD7cI%2BVWNMIHBdjDEfSLgTCiQlddphHagJP0xhNkUJjtLyu=
+dJUIAQQTvCtZQFeFGCwymNm9ibB4s11p186S8xGayv53MpQuUv8dZs28wlTTxHGmw=
+%3D%3D&userId=3Dbf192246-df0d-4808-8591-0b05198c66b5">here</a>
