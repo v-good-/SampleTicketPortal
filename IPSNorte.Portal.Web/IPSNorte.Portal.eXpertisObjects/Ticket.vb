@@ -1,5 +1,7 @@
 ﻿Public Class Ticket
-   
+
+    Property Id As String
+
     Property Description() As String
 
     Property Number() As Integer

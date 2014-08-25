@@ -1,4 +1,4 @@
-Public interface ITicketService
+Public Interface ITicketService
     ''' <summary>
     ''' Create a new ticket.
     ''' </summary>
@@ -8,4 +8,13 @@ Public interface ITicketService
     ''' Delete an existing ticket.
     ''' </summary>
     Sub DeleteTicket(ticket As Ticket)
-end interface
+
+    Function GetTickets() As IList(Of Ticket)
+
+    Function GetTicketsPaged(size As Integer,
+                               page As Integer,
+                               orderBy As String,
+                               orderByDirection As String,
+                               searchString As String) As IList(Of Ticket)
+
+End Interface
