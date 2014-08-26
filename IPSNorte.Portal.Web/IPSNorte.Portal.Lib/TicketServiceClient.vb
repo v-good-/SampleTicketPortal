@@ -28,17 +28,11 @@ Public Class TicketServiceClient
     End Sub
 
 
-    Public Function GetTickets(ByVal size As Integer,
-                               ByVal page As Integer,
-                               ByVal orderBy As String,
-                               ByVal orderByDirection As String,
-                               ByVal searchString As String,
-                               ByVal searchTerms As SearchModel,
-                               ByRef total As Integer) As ICollection(Of Ticket)
-        Return _ticketService.GetTicketsPaged(size, page, orderBy, orderByDirection, searchString, searchTerms, total)
+    Public Function GetTickets(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchTerms As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As ICollection(Of Ticket)
+        Return _ticketService.GetTicketsPaged(size, page, orderBy, orderByDirection, searchString, searchTerms, projectNumber, total)
     End Function
 
-    Public Function GetTickets() As ICollection(Of Ticket)
-        Return _ticketService.GetTickets()
+    Public Function GetTickets(ByVal projectNumber As String) As ICollection(Of Ticket)
+        Return _ticketService.GetTickets(projectNumber)
     End Function
 End Class

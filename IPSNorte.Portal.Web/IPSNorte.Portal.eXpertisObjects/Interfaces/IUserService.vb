@@ -9,4 +9,6 @@ Public interface IUserService
 
     Sub Delete(user As User)
 
+    Function GetCurrentUser() As User
+
 end interface

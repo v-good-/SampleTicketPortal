@@ -9,7 +9,7 @@ Public Interface ITicketService
     ''' </summary>
     Sub DeleteTicket(ticket As Ticket)
 
-    Function GetTickets() As IList(Of Ticket)
+    Function GetTickets(projectNumber As String) As IList(Of Ticket)
 
     Function GetTicketsPaged(ByVal size As Integer,
                                     ByVal page As Integer,
@@ -17,6 +17,7 @@ Public Interface ITicketService
                                     ByVal orderByDirection As String,
                                     ByVal searchString As String,
                                     ByVal searchTerms As SearchModel,
+                                    ByVal projectNumber As String,
                                     ByRef total As Integer) As IList(Of Ticket)
 
 End Interface

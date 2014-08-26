@@ -34,6 +34,11 @@ Public Class UserService
 
     End Function
 
+    Public Function GetCurrentUser() As User Implements IUserService.GetCurrentUser
+        Return _users.First()
+    End Function
+
+
     Public Sub IUserService_Update(ByVal user As User) Implements IUserService.Update
         IUserService_Delete(user)
         _users.Add(user)

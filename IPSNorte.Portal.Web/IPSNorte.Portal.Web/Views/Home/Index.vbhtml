@@ -21,11 +21,10 @@ End Code
     <div class="col-md-4">
         <h2><span class="glyphicon glyphicon-list-alt"></span> View Active Tickets</h2>
         <p>View currently active tickets.</p>
-        <p class="btn btn-default">
+         
             @Html.ActionLink("View tickets", "Index", "Ticketing", vbNullString, New With {.class = "btn btn-default"})
             
-            @Html.ActionLink("View tickets &raquo;", "ViewActiveTickets")
-        </p>
+              
     </div>
     <div class="col-md-4">
 

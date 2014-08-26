@@ -18,16 +18,16 @@ Public Class TicketService
         user.FirstName = "Mike"
         user.LastName = "Tompkins"
 
-        For i As Integer = 0 To 1020
+        For i As Integer = 0 To 1200
             Dim ticket As Ticket = New Ticket()
             ticket.CreatedDate = Now
             ticket.CreatedBy = user
-            ticket.Id = New Guid().ToString()
-            ticket.Description = "Sample ticket " + i.ToString() + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
+            ticket.Id = System.Guid.NewGuid.ToString()
+            ticket.Description = "Sample ticket " + i.ToString() + " " + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
             ticket.Number = i
-            ticket.Priority = TicketPriorityEnum.High
-            ticket.ProjectNumber = i Mod 4
-            ticket.Status = TicketStatusEnum.Open
+            ticket.Priority = CType(CInt(Math.Ceiling(Rnd() * 3)), TicketPriorityEnum)
+            ticket.ProjectNumber = "2014/55435"
+            ticket.Status = CType(CInt(Math.Ceiling(Rnd() * 2)), TicketStatusEnum)
             Tickets.Add(ticket)
         Next (i)
 
@@ -54,34 +54,40 @@ Public Class TicketService
 
     End Sub
 
-    Public Function GetTicketsPaged(ByVal size As Integer,
-                                    ByVal page As Integer,
-                                    ByVal orderBy As String,
-                                    ByVal orderByDirection As String,
-                                    ByVal searchString As String,
-                                    ByVal searchTerms As SearchModel,
-                                    ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
-
+    Public Function GetTicketsPaged(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
         Dim currentRecords As IEnumerable(Of Ticket)
-
         Dim pageIndex As Integer = page - 1
         Dim pageSize As Integer = size
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
 
+        currentRecords = Tickets.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
+
         If (orderByDirection.Equals("desc")) Then
-            currentRecords = Tickets.OrderByDescending(Function(m) prop.GetValue(m))
+            currentRecords = currentRecords.OrderByDescending(Function(m) prop.GetValue(m))
         Else
-            currentRecords = Tickets.OrderBy(Function(m) prop.GetValue(m))
+            currentRecords = currentRecords.OrderBy(Function(m) prop.GetValue(m))
         End If
 
         If (Not String.IsNullOrEmpty(searchString)) Then
             currentRecords = currentRecords.Where(Function(m) m.Description.Contains(searchString))
         End If
 
-        If (Not searchTerms Is Nothing) Then
-            For Each searchTerm As SearchRule In searchTerms.rules
-                Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
-                currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
+        If (Not searchModel Is Nothing) Then
+            For Each searchTerm As SearchRule In searchModel.rules
+
+
+                Select Case (searchTerm.field.ToLower())
+                    Case "createdby"
+                        currentRecords = currentRecords.Where(Function(m) m.CreatedBy.LastName.Contains(searchTerm.data) Or m.CreatedBy.FirstName.Contains(searchTerm.data))
+                    Case "priority"
+                        currentRecords = currentRecords.Where(Function(m) m.Priority.ToString().ToLower().Contains(searchTerm.data.ToLower()))
+                    Case "status"
+                        currentRecords = currentRecords.Where(Function(m) m.Status.ToString().ToLower().Contains(searchTerm.data.ToLower()))
+
+                    Case Else
+                        Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
+                        currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
+                End Select
             Next
         End If
 
@@ -90,8 +96,8 @@ Public Class TicketService
 
     End Function
 
-    Public Function GetTickets() As IList(Of Ticket) Implements ITicketService.GetTickets
-        Return Tickets
+    Public Function GetTickets(ByVal projectNumber As String) As IList(Of Ticket) Implements ITicketService.GetTickets
+        Return Tickets.Where(Function(m) m.ProjectNumber = projectNumber)
     End Function
 
 End Class
