@@ -1,5 +1,4 @@
-﻿Public Class Ticket
-   
+﻿Public Class TicketViewModel
 
     Property ID As String
 
@@ -9,13 +8,11 @@
 
     Property ProjectNumber() As String
 
-    Property CreatedBy() As User
+    Property CreatedBy() As String
 
     Property CreatedDate() As DateTime
 
-    Property Status() As TicketStatusEnum
+    Property Status() As String
 
-    Property Priority() As TicketPriorityEnum
-
-
+    Property Priority() As String
 End Class

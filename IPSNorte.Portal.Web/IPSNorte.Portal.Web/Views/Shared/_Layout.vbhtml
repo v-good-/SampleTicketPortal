@@ -8,6 +8,10 @@
     <title>@ViewBag.Title - @ApplicationName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required:=False)
+    @Scripts.Render("~/bundles/jqgrid")
 
 </head>
 <body>
@@ -39,8 +43,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required:=False)
+   
 </body>
 </html>

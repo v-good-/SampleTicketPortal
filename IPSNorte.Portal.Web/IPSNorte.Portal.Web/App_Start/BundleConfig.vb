@@ -19,9 +19,13 @@ Public Module BundleConfig
                   "~/Scripts/bootstrap.js",
                   "~/Scripts/respond.js"))
 
+        bundles.Add(New ScriptBundle("~/bundles/jqgrid").Include(
+                "~/Scripts/jquery.jqGrid.min*",
+                "~/Scripts/grid.locale-es*"))
+
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
-                  "~/Content/site.css"))
+                  "~/Content/site.css", "~/Content/ui.jqgrid.css"))
 
         ' Set EnableOptimizations to false for debugging. For more information,
         ' visit http://go.microsoft.com/fwlink/?LinkId=301862

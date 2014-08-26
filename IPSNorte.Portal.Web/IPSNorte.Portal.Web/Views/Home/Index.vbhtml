@@ -21,8 +21,7 @@ End Code
     <div class="col-md-4">
         <h2>View Active Tickets</h2>
         <p>View currently active tickets.</p>
-        <p>@Html.ActionLink("View tickets")
-<a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">View Tickets &raquo;</a></p>
+        <p>@Html.ActionLink("View tickets", "Index", "Ticketing",vbNullString, New With {.class = "btn btn-default"}) 
     </div>
     <div class="col-md-4">
 
