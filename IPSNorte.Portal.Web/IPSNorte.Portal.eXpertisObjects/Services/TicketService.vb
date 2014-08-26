@@ -62,7 +62,7 @@ Public Class TicketService
                                     ByVal searchTerms As SearchModel,
                                     ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
 
-        Dim currentRecords As IOrderedEnumerable(Of Ticket)
+        Dim currentRecords As IEnumerable(Of Ticket)
 
         Dim pageIndex As Integer = page - 1
         Dim pageSize As Integer = size
