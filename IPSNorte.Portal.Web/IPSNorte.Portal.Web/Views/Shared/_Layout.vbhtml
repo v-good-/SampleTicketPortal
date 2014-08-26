@@ -13,6 +13,8 @@
     @RenderSection("scripts", required:=False)
     @Scripts.Render("~/bundles/jqgrid")
 
+    @Html.Partial("~/Views/Shared/_GA.vbhtml")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

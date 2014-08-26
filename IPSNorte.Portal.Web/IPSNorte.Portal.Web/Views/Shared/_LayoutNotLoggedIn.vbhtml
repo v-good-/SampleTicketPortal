@@ -8,7 +8,7 @@
     <title>@ViewBag.Title - @ApplicationName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Html.Partial("~/Views/Shared/_GA.vbhtml")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
