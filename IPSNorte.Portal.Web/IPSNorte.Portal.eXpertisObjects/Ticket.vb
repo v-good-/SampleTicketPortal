@@ -11,7 +11,7 @@
     Property CreatedBy() As User
 
     Property CreatedDate() As DateTime
-    
+
     Property Status() As TicketStatusEnum
 
     Property Priority() As TicketPriorityEnum

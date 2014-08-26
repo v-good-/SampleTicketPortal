@@ -11,10 +11,12 @@ Public Interface ITicketService
 
     Function GetTickets() As IList(Of Ticket)
 
-    Function GetTicketsPaged(size As Integer,
-                               page As Integer,
-                               orderBy As String,
-                               orderByDirection As String,
-                               searchString As String) As IList(Of Ticket)
+    Function GetTicketsPaged(ByVal size As Integer,
+                                    ByVal page As Integer,
+                                    ByVal orderBy As String,
+                                    ByVal orderByDirection As String,
+                                    ByVal searchString As String,
+                                    ByVal searchTerms As SearchModel,
+                                    ByRef total As Integer) As IList(Of Ticket)
 
 End Interface

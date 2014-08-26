@@ -13,20 +13,26 @@ Public Class TicketService
 
     Private Shared Sub LoadTickets()
         Tickets.Clear()
+
+        Dim user As New User
+        user.FirstName = "Mike"
+        user.LastName = "Tompkins"
+
         For i As Integer = 0 To 1020
             Dim ticket As Ticket = New Ticket()
             ticket.CreatedDate = Now
+            ticket.CreatedBy = user
             ticket.Id = New Guid().ToString()
             ticket.Description = "Sample ticket " + i.ToString() + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
             ticket.Number = i
             ticket.Priority = TicketPriorityEnum.High
-            ticket.ProjectNumber = i * 2
+            ticket.ProjectNumber = i Mod 4
             ticket.Status = TicketStatusEnum.Open
             Tickets.Add(ticket)
         Next (i)
 
     End Sub
-    
+
     ''' <summary>
     ''' Create a new ticket.
     ''' </summary>
@@ -48,30 +54,39 @@ Public Class TicketService
 
     End Sub
 
-    Public Function GetTicketsPaged(size As Integer,
-                               page As Integer,
-                               orderBy As String,
-                               orderByDirection As String,
-                               searchString As String) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
+    Public Function GetTicketsPaged(ByVal size As Integer,
+                                    ByVal page As Integer,
+                                    ByVal orderBy As String,
+                                    ByVal orderByDirection As String,
+                                    ByVal searchString As String,
+                                    ByVal searchTerms As SearchModel,
+                                    ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
 
-        Dim currentPageRecords As ICollection(Of Ticket)
+        Dim currentRecords As IOrderedEnumerable(Of Ticket)
 
         Dim pageIndex As Integer = page - 1
         Dim pageSize As Integer = size
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
 
-        If (Not String.IsNullOrEmpty(searchString)) Then
-            'Ensure it is at least an empty so that the where clause always works.
-            searchString = String.Empty
-        End If
-
-        If (orderByDirection.ToLower().Equals("desc")) Then
-            currentPageRecords = Tickets.Where(Function(m) m.Description.Contains(searchString)).OrderByDescending(Function(m) prop.GetValue(m)).Skip(pageIndex * pageSize).Take(pageSize).ToList()
+        If (orderByDirection.Equals("desc")) Then
+            currentRecords = Tickets.OrderByDescending(Function(m) prop.GetValue(m))
         Else
-            currentPageRecords = Tickets.Where(Function(m) m.Description.Contains(searchString)).OrderBy(Function(m) prop.GetValue(m)).Skip(pageIndex * pageSize).Take(pageSize).ToList()
+            currentRecords = Tickets.OrderBy(Function(m) prop.GetValue(m))
         End If
 
-        Return currentPageRecords
+        If (Not String.IsNullOrEmpty(searchString)) Then
+            currentRecords = currentRecords.Where(Function(m) m.Description.Contains(searchString))
+        End If
+
+        If (Not searchTerms Is Nothing) Then
+            For Each searchTerm As SearchRule In searchTerms.rules
+                Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
+                currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
+            Next
+        End If
+
+        total = currentRecords.Count
+        Return currentRecords.Skip(pageIndex * pageSize).Take(pageSize).ToList()
 
     End Function
 
