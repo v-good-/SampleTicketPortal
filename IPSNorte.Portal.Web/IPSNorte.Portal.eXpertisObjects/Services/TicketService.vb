@@ -71,7 +71,7 @@ Public Class TicketService
         If (Not searchTerms Is Nothing) Then
             For Each searchTerm As SearchRule In searchTerms.rules
                 Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
-                currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
+                currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data)).ToList()
             Next
         End If
 
