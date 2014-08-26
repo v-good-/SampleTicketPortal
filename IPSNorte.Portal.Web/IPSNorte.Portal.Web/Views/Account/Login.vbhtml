@@ -49,15 +49,15 @@ End Code
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" onclick="_gaq.push(['_trackEvent', 'Login', 'Login', 'User logged in']);" />
+                            <input type="submit" value="Log in" class="btn btn-default" onmousedown="_gaq.push(['_trackEvent', 'Login', 'Login', 'User logged in']);" />
                         </div>
                     </div>
                     <p>
-                        @Html.ActionLink("Register as a new user", "Register", Nothing, New With {.onclick = "_gaq.push(['_trackEvent', 'Login', 'Register', 'User going to registration page']);"})
+                        @Html.ActionLink("Register as a new user", "Register", Nothing, New With {.onmousedown = "_gaq.push(['_trackEvent', 'Login', 'Register', 'User going to registration page']);"})
                     </p>
                     @* Enable this once you have account confirmation enabled for password reset functionality*@
                     <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword", Nothing, New With {.onclick = "_gaq.push(['_trackEvent', 'Login', 'ForgotPassword', 'User requested password recovery']);"})
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword", Nothing, New With {.onmousedown = "_gaq.push(['_trackEvent', 'Login', 'ForgotPassword', 'User requested password recovery']);"})
                     </p>
                 </text>
             End Using
