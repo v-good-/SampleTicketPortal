@@ -4,6 +4,8 @@
 
 @Code
     ViewBag.Title = "Forgot your password?"
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.vbhtml"
+
 End Code
 
 <h2>@ViewBag.Title.</h2>

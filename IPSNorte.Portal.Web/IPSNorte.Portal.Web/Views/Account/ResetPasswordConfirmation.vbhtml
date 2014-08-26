@@ -1,5 +1,7 @@
 ﻿@Code
     ViewBag.Title = "Reset password confirmation"
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.vbhtml"
+
 End Code
 
 <hgroup class="title">

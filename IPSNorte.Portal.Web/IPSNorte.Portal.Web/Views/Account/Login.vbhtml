@@ -11,7 +11,7 @@ End Code
     <br />
     <br />
     <br />
-        <br />
+    <br />
 </div>
 
 <div class="row">
@@ -19,7 +19,7 @@ End Code
         <img src="~/Content/logo.png" />
     </div>
 
-    <div class="col-md-5 col-md-offset-1">
+    <div class="col-md-5 col-md-offset-1 text-center">
         <section id="loginForm">
             @Using Html.BeginForm("Login", "Account", New With {.ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, New With {.class = "form-horizontal", .role = "form"})
                 @Html.AntiForgeryToken()
@@ -49,15 +49,15 @@ End Code
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
+                            <input type="submit" value="Log in" class="btn btn-default" onclick="_gaq.push(['_trackEvent', 'Login', 'Login', 'User logged in']);" />
                         </div>
                     </div>
                     <p>
-                        @Html.ActionLink("Register as a new user", "Register")
+                        @Html.ActionLink("Register as a new user", "Register", Nothing, New With {.onclick = "_gaq.push(['_trackEvent', 'Login', 'Register', 'User going to registration page']);"})
                     </p>
                     @* Enable this once you have account confirmation enabled for password reset functionality*@
                     <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword", Nothing, New With {.onclick = "_gaq.push(['_trackEvent', 'Login', 'ForgotPassword', 'User requested password recovery']);"})
                     </p>
                 </text>
             End Using
