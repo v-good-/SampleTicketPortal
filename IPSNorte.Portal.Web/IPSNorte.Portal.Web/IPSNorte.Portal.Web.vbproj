@@ -341,6 +341,7 @@
     <Content Include="Views\Shared\_Events.vbhtml" />
     <Content Include="Views\Shared\_TicketsPie.vbhtml" />
     <Content Include="Views\Shared\_TicketsBar.vbhtml" />
+    <Content Include="Views\Shared\_LayoutNotLoggedIn.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
