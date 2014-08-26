@@ -32,12 +32,7 @@ Public Class UserService
 
         Return _users.FirstOrDefault(Function(usr) usr.Id = id)
 
-    End Function
-
-    Public Function GetCurrentUser() As User Implements IUserService.GetCurrentUser
-        Return _users.First()
-    End Function
-
+    End Function  
 
     Public Sub IUserService_Update(ByVal user As User) Implements IUserService.Update
         IUserService_Delete(user)

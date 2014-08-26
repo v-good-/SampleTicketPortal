@@ -41,8 +41,6 @@ Public Class UserServiceClient
 
     End Sub
 
-    Public Function GetCurrentUser() As User
-        Return _userService.GetCurrentUser()
-    End Function
+    
 
 End Class

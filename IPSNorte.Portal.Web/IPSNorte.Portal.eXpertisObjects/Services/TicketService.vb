@@ -26,7 +26,7 @@ Public Class TicketService
             ticket.Description = "Sample ticket " + i.ToString() + " " + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
             ticket.Number = i
             ticket.Priority = CType(CInt(Math.Ceiling(Rnd() * 3)), TicketPriorityEnum)
-            ticket.ProjectNumber = "2014/55435"
+            ticket.ProjectNumber = CInt(Math.Ceiling(Rnd() * 100))
             ticket.Status = CType(CInt(Math.Ceiling(Rnd() * 2)), TicketStatusEnum)
             Tickets.Add(ticket)
         Next (i)

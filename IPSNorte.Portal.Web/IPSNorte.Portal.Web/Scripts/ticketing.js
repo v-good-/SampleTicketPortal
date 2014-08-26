@@ -36,7 +36,9 @@
        { width: 400 }, // default settings for edit
        {}, // default settings for add
        {}, // delete instead that del:false we need this
-       { multipleSearch: true },
+       { multipleSearch: true,afterRedraw: function($p) { 
+            $("select.opsel").remove(); 
+        } },
        {} /* view parameters*/
      );
 };

@@ -1,9 +1,10 @@
 ﻿Imports System.Web.Mvc
+Imports Microsoft.AspNet.Identity
 Imports IPSNorte.Portal.eXpertisObjects
 Imports IPSNorte.Portal.Lib
 Imports Newtonsoft.Json
 
- 
+
 
 Public Class TicketingController
     Inherits Controller
@@ -21,7 +22,7 @@ Public Class TicketingController
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
-        projectNumber = _userServiceClient.GetCurrentUser().ProjectNumber
+        projectNumber = _userServiceClient.FindById(User.Identity.GetUserId()).ProjectNumber
 
         If (Not String.IsNullOrEmpty(filters)) Then
             searchTerms = JsonConvert.DeserializeObject(Of SearchModel)(filters)

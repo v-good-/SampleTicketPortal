@@ -8,7 +8,6 @@ Public interface IUserService
     Sub Update(user As User)
 
     Sub Delete(user As User)
-
-    Function GetCurrentUser() As User
+     
 
 end interface
