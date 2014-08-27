@@ -5,6 +5,8 @@
 
 @Code
     ViewBag.Title = "Register"
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.vbhtml"
+
 End Code
 
 <h2>@ViewBag.Title.</h2>

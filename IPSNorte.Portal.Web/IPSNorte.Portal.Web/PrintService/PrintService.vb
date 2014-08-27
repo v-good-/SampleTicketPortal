@@ -48,7 +48,7 @@ Public Class PrintService
 
         Using fs As New FileStream(WorkingFile, FileMode.Create, FileAccess.Write, FileShare.None)
             Using fw As New StreamWriter(fs)
-                fw.WriteLine("sep=,")
+
                 For Each ticketViewModel As TicketViewModel In ticketViewModels
                     fw.WriteLine(String.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                                                ticketViewModel.ID,

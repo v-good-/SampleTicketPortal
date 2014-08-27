@@ -1,6 +1,8 @@
 ﻿@ModelType ResetPasswordViewModel
 @Code
     ViewBag.Title = "Reset password"
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.vbhtml"
+
 End Code
 
 <h2>@ViewBag.Title.</h2>

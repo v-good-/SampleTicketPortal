@@ -16,14 +16,20 @@ Public Class TicketingController
     End Function
       
 
-    Function GetTickets(sidx As String, sord As String, page As Integer, rows As Integer, searchString As String, filters As String) As JsonResult
+    Function GetTickets(sidx As String,
+                        sord As String,
+                        page As Integer,
+                        rows As Integer,
+                        searchString As String,
+                        filters As String) As JsonResult
+
         Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
         Dim _userServiceClient As UserServiceClient = New UserServiceClient()
         Dim count As Integer
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
-        projectNumber = _userServiceClient.FindById(User.Identity.GetUserId()).ProjectNumber
+        projectNumber = _userServiceClient.FindByName(User.Identity.GetUserName()).ProjectNumber
 
         If (Not String.IsNullOrEmpty(filters)) Then
             searchTerms = JsonConvert.DeserializeObject(Of SearchModel)(filters)

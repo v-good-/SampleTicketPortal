@@ -6,40 +6,17 @@ Public Class TicketService
     Implements ITicketService
 
     Shared ReadOnly Tickets As List(Of Ticket) = New List(Of Ticket)()
-
-    Shared Sub New()
-        LoadTickets()
-    End Sub
-
-    Private Shared Sub LoadTickets()
-        Tickets.Clear()
-
-        Dim user As New User
-        user.FirstName = "Mike"
-        user.LastName = "Tompkins"
-
-        For i As Integer = 0 To 1200
-            Dim ticket As Ticket = New Ticket()
-            ticket.CreatedDate = Now
-            ticket.CreatedBy = user
-            ticket.Id = System.Guid.NewGuid.ToString()
-            ticket.Description = "Sample ticket " + i.ToString() + " " + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
-            ticket.Number = i
-            ticket.Priority = CType(CInt(Math.Ceiling(Rnd() * 3)), TicketPriorityEnum)
-            ticket.ProjectNumber = CInt(Math.Ceiling(Rnd() * 100))
-            ticket.Status = CType(CInt(Math.Ceiling(Rnd() * 2)), TicketStatusEnum)
-            Tickets.Add(ticket)
-        Next (i)
-
-    End Sub
-
+    
     ''' <summary>
     ''' Create a new ticket.
     ''' </summary>
-
     Public Sub CreateTicket(ticket As Ticket) Implements ITicketService.CreateTicket
 
-        ticket.Number = Tickets.Last().Number + 1
+        ticket.Number = 1
+        If (Tickets.Any()) Then
+            ticket.Number = Tickets.Last().Number + 1
+        End If
+
         Tickets.Add(ticket)
 
     End Sub
@@ -58,7 +35,9 @@ Public Class TicketService
         Dim currentRecords As IEnumerable(Of Ticket)
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
 
+
         currentRecords = Tickets.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
+
         If (orderByDirection.Equals("desc")) Then
             currentRecords = currentRecords.OrderByDescending(Function(m) prop.GetValue(m))
         Else
