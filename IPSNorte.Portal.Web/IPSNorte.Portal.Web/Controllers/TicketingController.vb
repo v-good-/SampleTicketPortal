@@ -95,4 +95,8 @@ Public Class TicketingController
         Dim WorkingFile = Path.Combine(WorkingFolder, fileName)
         Return File(WorkingFile, "application/download", fileName)
     End Function
+
+    Function CreateTicket() As ActionResult
+        Return PartialView()
+    End Function
 End Class

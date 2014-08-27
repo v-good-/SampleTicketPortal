@@ -24,7 +24,7 @@ Public Module BundleConfig
                 "~/Scripts/grid.locale-es*"))
 
         bundles.Add(New StyleBundle("~/Content/css").Include(
-                  "~/Content/bootstrap.css",
+                  "~/Content/bootstrap.css", "~/Content/jquery-ui.css",
                   "~/Content/site.css", "~/Content/ui.jqgrid.css"))
 
         bundles.Add(New ScriptBundle("~/bundles/flot").Include(
