@@ -74,7 +74,7 @@ Public Class TicketService
         Dim currentRecords As IEnumerable(Of Ticket)
         Dim pageIndex As Integer = page - 1
         Dim pageSize As Integer = size
-        
+
         currentRecords = FilterTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
         total = currentRecords.Count
         Return currentRecords.Skip(pageIndex * pageSize).Take(pageSize).ToList()
