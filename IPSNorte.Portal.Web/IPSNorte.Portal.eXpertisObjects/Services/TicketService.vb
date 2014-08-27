@@ -54,14 +54,11 @@ Public Class TicketService
 
     End Sub
 
-    Public Function GetTicketsPaged(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
+    Private Function FilterTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket)
         Dim currentRecords As IEnumerable(Of Ticket)
-        Dim pageIndex As Integer = page - 1
-        Dim pageSize As Integer = size
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
 
         currentRecords = Tickets.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
-
         If (orderByDirection.Equals("desc")) Then
             currentRecords = currentRecords.OrderByDescending(Function(m) prop.GetValue(m))
         Else
@@ -91,9 +88,24 @@ Public Class TicketService
             Next
         End If
 
+        Return currentRecords.ToList()
+    End Function
+
+    Public Function GetTicketsPaged(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
+        Dim currentRecords As IEnumerable(Of Ticket)
+        Dim pageIndex As Integer = page - 1
+        Dim pageSize As Integer = size
+        
+        currentRecords = FilterTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
         total = currentRecords.Count
         Return currentRecords.Skip(pageIndex * pageSize).Take(pageSize).ToList()
 
+    End Function
+
+    Public Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket) Implements ITicketService.GetTickets
+        Dim currentRecords As IEnumerable(Of Ticket)
+        currentRecords = FilterTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
+        Return currentRecords
     End Function
 
     Public Function GetTickets(ByVal projectNumber As String) As IList(Of Ticket) Implements ITicketService.GetTickets

@@ -20,4 +20,5 @@ Public Interface ITicketService
                                     ByVal projectNumber As String,
                                     ByRef total As Integer) As IList(Of Ticket)
 
+    Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket)
 End Interface

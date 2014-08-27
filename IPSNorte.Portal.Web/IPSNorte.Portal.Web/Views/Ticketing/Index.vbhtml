@@ -26,3 +26,5 @@ End Code
 </table>
 
 <div id="ticketingPager"></div>
+<br /><br />
+<a href="#" id="pdf-button">Export to pdf</a> <a href="#" id="xls-button">Export to xls</a>

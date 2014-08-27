@@ -47,12 +47,58 @@ $(document).ready(function () {
     showGrid();
 
     $("#search-button").button().click(function () {
-        searchString = $.trim($("#search-string").val());
-         
-        
-       
+        searchString = $.trim($("#search-string").val()); 
             $("#ticketingGrid").jqGrid('setGridParam', { url: '/Ticketing/GetTickets?searchString=' + searchString }); 
-            $("#ticketingGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
-        
+            $("#ticketingGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid'); 
+    });
+
+    $("#pdf-button").button().click(function () {
+        var myUrl = "/Ticketing/PrintTicketsToPdf";
+        var sw = true;
+         
+        var postData = jQuery("#ticketingGrid").jqGrid('getGridParam', 'postData');
+        $.each(postData, function (key, value) {
+            if (sw) {
+                sw = false;
+                myUrl += "?" + key + "=" + encodeURIComponent(value);
+            } else {
+                myUrl += "&" + key + "=" + encodeURIComponent(value); 
+            }
+        });
+
+        $.ajax({
+            url: myUrl, 
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            success: function (returnValue) {
+                window.location = '/Ticketing/DownloadFile?fileName=' + returnValue;
+            }  
+        });
+    });
+
+    $("#xls-button").button().click(function () {
+        var myUrl = "/Ticketing/PrintTicketsToXls";
+        var sw = true;
+
+        var postData = jQuery("#ticketingGrid").jqGrid('getGridParam', 'postData');
+        $.each(postData, function (key, value) {
+            if (sw) {
+                sw = false;
+                myUrl += "?" + key + "=" + encodeURIComponent(value);
+            } else {
+                myUrl += "&" + key + "=" + encodeURIComponent(value);
+            }
+        });
+
+        $.ajax({
+            url: myUrl,
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            success: function (returnValue) {
+                window.location = '/Ticketing/DownloadFile?fileName=' + returnValue;
+            }
+        });
     });
 });

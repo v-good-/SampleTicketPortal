@@ -35,4 +35,9 @@ Public Class TicketServiceClient
     Public Function GetTickets(ByVal projectNumber As String) As ICollection(Of Ticket)
         Return _ticketService.GetTickets(projectNumber)
     End Function
+
+    Public Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket)
+        Return _ticketService.GetTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
+    End Function
+
 End Class
