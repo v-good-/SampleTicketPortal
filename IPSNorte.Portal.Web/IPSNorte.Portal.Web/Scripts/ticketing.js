@@ -109,5 +109,5 @@ $(document).ready(function () {
 
 function returnHyperLink(cellValue, options, rowdata, action) 
 { 
-    return "<a href='/Ticketing/DownloadFile?fileName=" + rowdata.File + "'>" + rowdata.File + "</a>";
+    return "<a href='/Ticketing/DownloadTicketFile?fileName=" + rowdata.File + "'>" + rowdata.File + "</a>";
 }  

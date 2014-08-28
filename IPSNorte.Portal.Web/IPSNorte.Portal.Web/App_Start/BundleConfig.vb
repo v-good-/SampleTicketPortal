@@ -23,7 +23,7 @@ Public Module BundleConfig
                   "~/Scripts/respond.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/jqgrid").Include(
-                "~/Scripts/jquery.jqGrid.min*",
+                "~/Scripts/jquery.jqGrid.min.js",
                 "~/Scripts/grid.locale-es*"))
 
         bundles.Add(New StyleBundle("~/Content/css").Include(

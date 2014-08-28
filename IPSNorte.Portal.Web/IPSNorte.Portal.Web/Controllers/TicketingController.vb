@@ -96,6 +96,12 @@ Public Class TicketingController
         Return File(WorkingFile, "application/download", fileName)
     End Function
 
+    Function DownloadTicketFile(fileName As String) As ActionResult
+        Dim WorkingFolder = ConfigurationManager.AppSettings("TicketFilesFolder") 
+        Dim WorkingFile = Path.Combine(WorkingFolder, fileName)
+        Return File(WorkingFile, "application/download", fileName)
+    End Function
+
     Function CreateTicket() As ActionResult
         Dim model = New CreateTicketViewModel()
         Return PartialView(model)
@@ -107,7 +113,11 @@ Public Class TicketingController
 
         If ModelState.IsValid Then
             Dim filename As String = IO.Path.GetFileName(model.File.FileName)
-            Dim WorkingFolder = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache)
+            Dim WorkingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
+
+            If (Not Directory.Exists(WorkingFolder)) Then
+                Directory.CreateDirectory(WorkingFolder)
+            End If
 
 
             Dim path As String = IO.Path.Combine(WorkingFolder, filename)

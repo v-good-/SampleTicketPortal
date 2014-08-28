@@ -17,6 +17,8 @@
 
     @Html.Partial("~/Views/Shared/_GA.vbhtml")
 
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
