@@ -43,7 +43,7 @@ Public Class PrintService
     Public Function ExportTicketsToXLS(ByVal ticketViewModels As IEnumerable(Of TicketViewModel)) As String
         Dim sw As New StringWriter()
         Dim WorkingFolder = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache)
-        Dim fileName As String = String.Format("Tickets_{1}_{2}_{3}_{0}.xls", Now.Millisecond, Now.Day, Now.Month, Now.Year)
+        Dim fileName As String = String.Format("Tickets_{1}_{2}_{3}_{0}.csv", Now.Millisecond, Now.Day, Now.Month, Now.Year)
         Dim WorkingFile = Path.Combine(WorkingFolder, fileName)
 
         Using fs As New FileStream(WorkingFile, FileMode.Create, FileAccess.Write, FileShare.None)
