@@ -16,5 +16,7 @@
 
     Property Priority() As TicketPriorityEnum
 
+    Property FileName() As String
+
 
 End Class

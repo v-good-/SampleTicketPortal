@@ -16,7 +16,7 @@ Module TicketExtension
             model.ProjectNumber = ticket.ProjectNumber
             model.Priority = ticket.Priority.ToString()
             model.Status = ticket.Status.ToString()
-
+            model.File = ticket.FileName
             ret.Add(model)
         Next
 

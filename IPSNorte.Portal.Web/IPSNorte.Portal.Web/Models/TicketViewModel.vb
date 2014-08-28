@@ -15,4 +15,6 @@
     Property Status() As String
 
     Property Priority() As String
+
+    Property File() As String
 End Class

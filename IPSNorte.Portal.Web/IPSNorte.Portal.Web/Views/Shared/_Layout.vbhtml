@@ -12,6 +12,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required:=False)
     @Scripts.Render("~/bundles/jqgrid")
+    @Scripts.Render("~/bundles/jqueryval")
 
     @Html.Partial("~/Views/Shared/_GA.vbhtml")
 

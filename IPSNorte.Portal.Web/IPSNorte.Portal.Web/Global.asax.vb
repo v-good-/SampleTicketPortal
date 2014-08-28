@@ -2,6 +2,7 @@
 Imports System.Web.Optimization
 Imports System.Runtime.Remoting
 Imports System.Threading.Tasks
+Imports System.ComponentModel.DataAnnotations
 Imports IPSNorte.Portal.eXpertisObjects
 Imports IPSNorte.Portal.Lib
 
@@ -15,8 +16,7 @@ Public Class MvcApplication
         RouteConfig.RegisterRoutes(RouteTable.Routes)
         BundleConfig.RegisterBundles(BundleTable.Bundles)
 
-        RemotingConfiguration.Configure(Server.MapPath("Web.config"), False)
-
+        RemotingConfiguration.Configure(Server.MapPath("Web.config"), False) 
         InitializeData().Wait()
 
     End Sub

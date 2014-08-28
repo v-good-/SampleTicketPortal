@@ -1,8 +1,6 @@
 ﻿@Code
     ViewData("Title") = "Index"
 End Code
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script> 
-
 
 
 <script src="~/Scripts/ticketing.js"></script>

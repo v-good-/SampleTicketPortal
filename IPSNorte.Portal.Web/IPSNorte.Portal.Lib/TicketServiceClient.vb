@@ -26,8 +26,7 @@ Public Class TicketServiceClient
         _ticketService.DeleteTicket(ticket)
 
     End Sub
-
-
+     
     Public Function GetTickets(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchTerms As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As ICollection(Of Ticket)
         Return _ticketService.GetTicketsPaged(size, page, orderBy, orderByDirection, searchString, searchTerms, projectNumber, total)
     End Function

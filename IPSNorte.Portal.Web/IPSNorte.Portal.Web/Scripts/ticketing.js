@@ -1,7 +1,7 @@
 ﻿function showGrid() {
     $('#ticketingGrid').jqGrid({
         caption: "Ticketing system",
-        colNames: ['ID','Description','Number','ProjectNumber','CreatedBy','CreatedDate','Status','Priority'],
+        colNames: ['ID','Description','Number','ProjectNumber','CreatedBy','CreatedDate','Status','Priority','File'],
         colModel: [
                     { name: 'ID', index: 'ID' },
 
@@ -12,6 +12,10 @@
                     { name: 'CreatedDate', index: 'CreatedDate', formatter: 'date' },
                     { name: 'Status', index: 'Status' },
                     { name: 'Priority', index: 'Priority' },
+                    { name: 'File', index: 'File'  ,
+                        edittype:'select', 
+                        formatter: returnHyperLink  }
+                     
                     
         ],
         hidegrid: false,
@@ -102,3 +106,8 @@ $(document).ready(function () {
         });
     });
 });
+
+function returnHyperLink(cellValue, options, rowdata, action) 
+{ 
+    return "<a href='/Ticketing/DownloadFile?fileName=" + rowdata.File + "'>" + rowdata.File + "</a>";
+}  

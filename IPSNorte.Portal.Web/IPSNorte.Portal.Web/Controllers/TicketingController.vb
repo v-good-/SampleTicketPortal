@@ -97,6 +97,39 @@ Public Class TicketingController
     End Function
 
     Function CreateTicket() As ActionResult
-        Return PartialView()
+        Dim model = New CreateTicketViewModel()
+        Return PartialView(model)
     End Function
+
+    Function SaveTicket(model As CreateTicketViewModel) As ActionResult
+        Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
+        Dim _userServiceClient As UserServiceClient = New UserServiceClient()
+
+        If ModelState.IsValid Then
+            Dim filename As String = IO.Path.GetFileName(model.File.FileName)
+            Dim WorkingFolder = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache)
+
+
+            Dim path As String = IO.Path.Combine(WorkingFolder, filename)
+            model.File.SaveAs(path)
+
+            Dim ticket As New Ticket
+            ticket.CreatedBy = _userServiceClient.FindById(User.Identity.GetUserId())
+            ticket.CreatedDate = model.CreatedDate
+            ticket.Description = model.Description
+            ticket.Id = System.Guid.NewGuid.ToString()
+            ticket.Number = model.Number
+            ticket.Priority = model.Priority
+            ticket.ProjectNumber = model.ProjectNumber
+            ticket.Status = model.Status
+            ticket.FileName = model.File.FileName
+
+            _ticketServiceClient.CreateTicket(Ticket)
+        End If
+        Return RedirectToAction("Index", "Home")
+    End Function
+
+
+
+ 
 End Class

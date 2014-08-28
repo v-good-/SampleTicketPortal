@@ -4,35 +4,23 @@
 End Code
 
 <script type="text/javascript" >
-    function CreateTicket()
-    { 
-            var url = "/Ticketing/CreateTicket";
-            var dialog = $('<div id ="dialog-form" style="display:none"></div>').appendTo('body');
-            
-           
-            $("#dialog-form").dialog("open");
-            e.preventDefault();
+   
 
 
-            $("#dialog-form").dialog({
-                modal: true,
-                autoOpen: false,
-                height: 255,
-                width: 300,
-                buttons: {
-                    "Retrieve": function () {
-                        document.forms["forgotform"].submit();
-                    },
-                    Cancel: function () {
-                        $(this).dialog("close");
-                    }
-                },
-            });
-
+    function CreateTicket() {
+        var url = "/Ticketing/CreateTicket";
+        $("#dialog-modal").dialog(
+        {
+            width: 800,
+            height: 700,
+             
+            open: function(event, ui) {
+                //Load the CreateAlbumPartial action which will return 
+                // the partial view _CreateAlbumPartial
+            $(this).load(url);
+        },
+        });
     }
-
-
-     
      
 
    
@@ -42,6 +30,8 @@ End Code
         <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
         <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
+ 
+<div id="dialog-modal" title="Create ticket" style="display: none;"></div>
 
 
     <div class="row">
@@ -51,7 +41,7 @@ End Code
                 Lore ipsum.
             </p>
             <p>
-            <p><a href="" onclick="CreateTicket()" class="btn btn-default dialog">Create ticket</a></p>
+            <p><a href="javascript:void(null);" onclick="CreateTicket()" class="btn btn-default dialog">Create ticket</a></p>
             </p>
         </div>
         <div class="col-md-4">
