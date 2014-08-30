@@ -106,6 +106,87 @@ Namespace Web.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Create Ticket.
+        '''</summary>
+        Public ReadOnly Property CreateTicketView_CreateTicket() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketView_CreateTicket", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Upload File.
+        '''</summary>
+        Public ReadOnly Property CreateTicketView_UploadFile() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketView_UploadFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Date is required.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_CreatedDate_Date_is_required() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_CreatedDate_Date_is_required", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Description is required.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_Description_Description_is_required() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_Description_Description_is_required", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Number is required.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_Number_Number_is_required() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_Number_Number_is_required", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Priority.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_Priority() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_Priority", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Project Number.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_ProjectNumber() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_ProjectNumber", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Project Number is required.
+        '''</summary>
+        Public ReadOnly Property CreateTicketViewModel_ProjectNumber_Project_Number_is_required() As String
+            Get
+                Return ResourceManager.GetString("CreateTicketViewModel_ProjectNumber_Project_Number_is_required", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Welcome to the IPS Ticketing Portal, here you will be able to see progress of open tickets, report issues and see blah... blah....
+        '''</summary>
+        Public ReadOnly Property IndexPage_Intro() As String
+            Get
+                Return ResourceManager.GetString("IndexPage_Intro", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Remember me?.
         '''</summary>
         Public ReadOnly Property LoginViewModel_RememberMe_Remember_me_() As String
@@ -148,6 +229,15 @@ Namespace Web.Resources
         Public ReadOnly Property ManageUserViewModel_OldPassword_Current_password() As String
             Get
                 Return ResourceManager.GetString("ManageUserViewModel_OldPassword_Current_password", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Tickets.
+        '''</summary>
+        Public ReadOnly Property PageTitle_TicketsIndex() As String
+            Get
+                Return ResourceManager.GetString("PageTitle_TicketsIndex", resourceCulture)
             End Get
         End Property
         

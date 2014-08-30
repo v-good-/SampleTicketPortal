@@ -1,3 +1,6 @@
 Public Interface IAlertService
-    Function GetAlerts(user As User) As List(Of Alert)
+    Function GetAlerts(ByVal projectNumber As String) As ICollection(Of Alert)
+
+    Sub CreateAlert(ByVal alert As Alert)
+
 End Interface

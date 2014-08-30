@@ -64,6 +64,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventServiceClient.vb" />
+    <Compile Include="AlertServiceClient.vb" />
     <Compile Include="TicketServiceClient.vb" />
     <Compile Include="UserServiceClient.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

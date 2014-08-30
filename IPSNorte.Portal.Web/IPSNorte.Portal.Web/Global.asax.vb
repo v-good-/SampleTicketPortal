@@ -34,14 +34,48 @@ Public Class MvcApplication
                .PhoneNumber2 = 699599499
            }
 
-
         Dim userManager = New ApplicationUserManager(New CustomUserStore())
         Await userManager.CreateAsync(user, "ASDFasdf1.")
 
         LoadTickets(user)
 
+        LoadAlerts()
+
     End Function
 
+    Private Shared Sub LoadAlerts()
+
+        Dim alertServiceClient = New AlertServiceClient()
+        
+        For i As Integer = 0 To 10
+            Dim alert As Alert = New Alert
+            alert.AlertDate = DateTime.Today.AddDays(-i)
+            alert.Description = String.Format("Alert number {0}", i)
+            alert.ProjectNumber = i Mod 3
+
+            alertServiceClient.CreateAlert(alert)
+
+        Next (i)
+
+    End Sub
+
+    Private Shared Sub LoadEvents()
+
+        Dim eventServiceClient = New EventServiceClient()
+
+        For i As Integer = 0 To 10
+            Dim theEvent = New CustomEvent()
+
+            theEvent.EventDate = DateTime.Today.AddDays(-i)
+            theEvent.Description = String.Format("Event description for event {0}", i)
+            theEvent.Title = String.Format("Event title {0}", i)
+
+            eventServiceClient.CreateEvent(theEvent)
+
+        Next (i)
+
+    End Sub
+    
     Private Shared Sub LoadTickets(ByVal user As ApplicationUser)
 
         Dim ticketServiceClient = New TicketServiceClient()

@@ -3,9 +3,7 @@
     Property Id As String
 
     Property Description() As String
-
-    Property Number() As Integer
-
+    
     Property ProjectNumber() As String
 
     Property CreatedBy() As User

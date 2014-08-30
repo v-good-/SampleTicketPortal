@@ -11,7 +11,11 @@ Public Class EventService
 
     End Sub
 
-    Public Function GetEvents() As List(Of CustomEvent) Implements IEventService.GetEvents
+    Public Function GetEvents() As ICollection(Of CustomEvent) Implements IEventService.GetEvents
         Return _events
     End Function
+
+    Public Sub CreateEvent(ByVal theEvent As CustomEvent) Implements IEventService.CreateEvent
+        _events.Add(theEvent)
+    End Sub
 End Class

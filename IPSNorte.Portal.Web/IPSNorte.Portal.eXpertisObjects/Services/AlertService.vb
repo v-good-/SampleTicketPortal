@@ -4,24 +4,17 @@ Public Class AlertService
     Implements IAlertService
 
     ReadOnly _alerts As List(Of Alert) = New List(Of Alert)()
+    
+    Public Sub CreateAlert(ByVal alert As Alert) Implements IAlertService.CreateAlert
 
-    Public Sub New()
-
-        'Generate a bunch of events for testing.
-        For i As Integer = 0 To 100
-            Dim alert As Alert = New Alert
-            alert.Id = i
-            alert.AlertDate = DateTime.Today.AddDays(-i)
-            alert.Description = "Alert number " + i
-            alert.ProjectNumber = i Mod 3
-
-            _alerts.Add(alert)
-        Next (i)
+        alert.Id = Guid.NewGuid().ToString()
+        _alerts.Add(alert)
 
     End Sub
 
+    Public Function GetAlerts(ByVal projectNumber As String) As ICollection(Of Alert) Implements IAlertService.GetAlerts
 
-    Public Function GetAlerts(ByVal user As User) As List(Of Alert) Implements IAlertService.GetAlerts
-        Return _alerts
+        Return _alerts.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
+
     End Function
 End Class

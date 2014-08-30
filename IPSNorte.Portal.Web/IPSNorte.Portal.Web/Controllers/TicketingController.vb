@@ -10,11 +10,13 @@ Imports Newtonsoft.Json
 Public Class TicketingController
     Inherits Controller
 
+    ReadOnly _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
+    ReadOnly _userServiceClient As UserServiceClient = New UserServiceClient()
+
     ' GET: /Ticketing
     Function Index() As ActionResult
         Return View()
     End Function
-      
 
     Function GetTickets(sidx As String,
                         sord As String,
@@ -23,8 +25,6 @@ Public Class TicketingController
                         searchString As String,
                         filters As String) As JsonResult
 
-        Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
-        Dim _userServiceClient As UserServiceClient = New UserServiceClient()
         Dim count As Integer
         Dim projectNumber As String
         Dim searchTerms As SearchModel
@@ -47,8 +47,7 @@ Public Class TicketingController
     End Function
 
     Function PrintTicketsToPdf(sidx As String, sord As String, searchString As String, filters As String) As ActionResult
-        Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
-        Dim _userServiceClient As UserServiceClient = New UserServiceClient()
+
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
@@ -67,9 +66,9 @@ Public Class TicketingController
         Return Json(fileName, JsonRequestBehavior.AllowGet)
 
     End Function
+    <HttpGet()>
     Function PrintTicketsToXls(sidx As String, sord As String, searchString As String, filters As String) As ActionResult
-        Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
-        Dim _userServiceClient As UserServiceClient = New UserServiceClient()
+      
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
@@ -90,56 +89,73 @@ Public Class TicketingController
     End Function
 
 
+    <HttpGet()>
     Function DownloadFile(fileName As String) As ActionResult
-        Dim WorkingFolder = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) 
-        Dim WorkingFile = Path.Combine(WorkingFolder, fileName)
+
+        Dim workingFolder = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache)
+        Dim WorkingFile = Path.Combine(workingFolder, fileName)
+
         Return File(WorkingFile, "application/download", fileName)
+
     End Function
 
+    <HttpGet()>
     Function DownloadTicketFile(fileName As String) As ActionResult
-        Dim WorkingFolder = ConfigurationManager.AppSettings("TicketFilesFolder") 
-        Dim WorkingFile = Path.Combine(WorkingFolder, fileName)
-        Return File(WorkingFile, "application/download", fileName)
+
+        Dim workingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
+        Dim workingFile = Path.Combine(workingFolder, fileName)
+
+        Return File(workingFile, "application/download", fileName)
+
     End Function
 
+    <HttpGet()>
     Function CreateTicket() As ActionResult
+
         Dim model = New CreateTicketViewModel()
+
+        'project number same as current user.
+        model.ProjectNumber = _userServiceClient.FindById(User.Identity.GetUserId()).ProjectNumber
+
         Return PartialView(model)
+
     End Function
 
-    Function SaveTicket(model As CreateTicketViewModel) As ActionResult
-        Dim _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
-        Dim _userServiceClient As UserServiceClient = New UserServiceClient()
 
+    <HttpPost()>
+    <ValidateAntiForgeryToken>
+    Function CreateTicket(model As CreateTicketViewModel) As ActionResult
+        
         If ModelState.IsValid Then
+
             Dim filename As String = IO.Path.GetFileName(model.File.FileName)
-            Dim WorkingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
+            Dim workingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
 
-            If (Not Directory.Exists(WorkingFolder)) Then
-                Directory.CreateDirectory(WorkingFolder)
+            If (Not Directory.Exists(workingFolder)) Then
+                Directory.CreateDirectory(workingFolder)
             End If
-
-
-            Dim path As String = IO.Path.Combine(WorkingFolder, filename)
+            
+            Dim path As String = IO.Path.Combine(workingFolder, filename)
             model.File.SaveAs(path)
 
             Dim ticket As New Ticket
             ticket.CreatedBy = _userServiceClient.FindById(User.Identity.GetUserId())
-            ticket.CreatedDate = model.CreatedDate
+            ticket.CreatedDate = DateTime.Now
             ticket.Description = model.Description
-            ticket.Id = System.Guid.NewGuid.ToString()
-            ticket.Number = model.Number
             ticket.Priority = model.Priority
             ticket.ProjectNumber = model.ProjectNumber
-            ticket.Status = model.Status
+            ticket.Status = TicketStatusEnum.Open 'always open if creating.
             ticket.FileName = model.File.FileName
 
-            _ticketServiceClient.CreateTicket(Ticket)
+            _ticketServiceClient.CreateTicket(ticket)
+
         End If
+
         Return RedirectToAction("Index", "Home")
+
     End Function
 
 
 
- 
+
 End Class

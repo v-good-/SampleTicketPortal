@@ -1102,17 +1102,37 @@ h6,
 p {
   margin: 0 0 10px;
 }
+
 .lead {
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.4;
+        margin-bottom: 20px;
+        font-size: 16px !important;
+        font-weight: 300;
+        line-height: 1.4;
 }
+
+.onlyOnBigger { display: none;}
+
+
 @media (min-width: 768px) {
   .lead {
-    font-size: 21px;
+    font-size: 21px !important;
   }
 }
+
+@media (max-width: 580px) {
+    .lead{ display: none;}
+    .remark{ display: none;}
+    h1 {
+        font-size: 1.5em !important;
+    }
+    h2 {
+        font-size: 1.3em !important;
+    }
+    .text-right {
+        text-align: center !important;
+    }    
+}
+
 small,
 .small {
   font-size: 85%;

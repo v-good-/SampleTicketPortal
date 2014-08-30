@@ -12,8 +12,7 @@ Module TicketExtension
             model.CreatedBy = ticket.CreatedBy.FirstName & " " & ticket.CreatedBy.LastName
             model.CreatedDate = ticket.CreatedDate
             model.Description = ticket.Description
-            model.Number = ticket.Number
-            model.ProjectNumber = ticket.ProjectNumber
+           model.ProjectNumber = ticket.ProjectNumber
             model.Priority = ticket.Priority.ToString()
             model.Status = ticket.Status.ToString()
             model.File = ticket.FileName

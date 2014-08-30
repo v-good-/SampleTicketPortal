@@ -12,11 +12,7 @@ Public Class TicketService
     ''' </summary>
     Public Sub CreateTicket(ticket As Ticket) Implements ITicketService.CreateTicket
 
-        ticket.Number = 1
-        If (Tickets.Any()) Then
-            ticket.Number = Tickets.Last().Number + 1
-        End If
-
+        ticket.Id = Guid.NewGuid().ToString()
         Tickets.Add(ticket)
 
     End Sub

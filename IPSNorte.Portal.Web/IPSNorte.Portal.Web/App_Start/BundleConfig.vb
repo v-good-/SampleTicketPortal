@@ -30,9 +30,7 @@ Public Module BundleConfig
                   "~/Content/bootstrap.css", "~/Content/jquery-ui.css",
                   "~/Content/site.css", "~/Content/ui.jqgrid.css"))
 
-        bundles.Add(New ScriptBundle("~/bundles/flot").Include(
-                  "~/Scripts/Flot/jquery.flot*",
-                  "~/Scripts/Flot/excanvas.js"))
+        bundles.Add(New ScriptBundle("~/bundles/flot").IncludeDirectory("~/Scripts/flot", "*.js"))
 
         ' Set EnableOptimizations to false for debugging. For more information,
         ' visit http://go.microsoft.com/fwlink/?LinkId=301862

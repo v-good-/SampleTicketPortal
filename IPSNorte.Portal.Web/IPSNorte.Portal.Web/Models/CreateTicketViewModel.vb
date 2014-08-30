@@ -1,19 +1,18 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports IPSNorte.Portal.eXpertisObjects
 Imports Microsoft.Ajax.Utilities
+Imports IPSNorte.Portal.Web.Web.Resources
 
 Public Class CreateTicketViewModel
 
     Public Sub New()
-        CreatedDate = Now
-
+        
         PriorityList = New List(Of SelectListItem)
         StatusList = New List(Of SelectListItem)
 
-       
         Dim values() As Integer = CType([Enum].GetValues(GetType(TicketPriorityEnum)), Integer())
         For Each value In values
-      
+
             Dim item As New SelectListItem()
             item.Value = value
             item.Text = CType(value, TicketPriorityEnum).ToString()
@@ -33,22 +32,14 @@ Public Class CreateTicketViewModel
 
     End Sub
 
-    <Required(ErrorMessage:="Description is required")>
+    <Required(ErrorMessageResourceType:=GetType(Resources), ErrorMessageResourceName:="CreateTicketViewModel_Description_Description_is_required")>
     Property Description() As String
-
-    <Required(ErrorMessage:="Number is required")> 
-    Property Number() As Integer
-
-
-    <Required(ErrorMessage:="Project Number is required")>
+    
+    <Required(ErrorMessageResourceType:=GetType(Resources), ErrorMessageResourceName:="CreateTicketViewModel_ProjectNumber_Project_Number_is_required")>
+    <Display(ResourceType:=GetType(Resources), Name:="CreateTicketViewModel_ProjectNumber")>
     Property ProjectNumber() As String
 
-    <Required(ErrorMessage:="Date is required")> 
-    <DataType(DataType.Date)>
-    Property CreatedDate() As DateTime
-
-    Property Status() As TicketStatusEnum
-
+    <Display(ResourceType:=GetType(Resources), Name:="CreateTicketViewModel_Priority")>
     Property Priority() As TicketPriorityEnum
 
     Property StatusList As List(Of SelectListItem)
