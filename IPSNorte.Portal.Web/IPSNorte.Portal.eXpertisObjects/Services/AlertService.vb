@@ -3,7 +3,7 @@ Public Class AlertService
     Inherits MarshalByRefObject
     Implements IAlertService
 
-    ReadOnly _alerts As List(Of Alert) = New List(Of Alert)()
+    Shared ReadOnly _alerts As List(Of Alert) = New List(Of Alert)()
     
     Public Sub CreateAlert(ByVal alert As Alert) Implements IAlertService.CreateAlert
 

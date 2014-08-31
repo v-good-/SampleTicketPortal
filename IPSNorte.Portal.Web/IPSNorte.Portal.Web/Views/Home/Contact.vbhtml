@@ -6,10 +6,13 @@ End Code
 <h3>@ViewData("Message")</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
+    IPSNorte<br />
+    Parque Tecnológico de Cantabria <br />
+    Edificio 3000 <br />
+    C/Isabel Torres, 11ª, 1ª Planta<br />
+    39011 - Santander (Cantabria).<br />
     <abbr title="Phone">P:</abbr>
-    425.555.0100
+    942.26.00.15
 </address>
 
 <address>

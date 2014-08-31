@@ -3,13 +3,7 @@ Public Class EventService
     Inherits MarshalByRefObject
     Implements IEventService
 
-    ReadOnly _events As List(Of CustomEvent) = New List(Of CustomEvent)()
-
-    Public Sub New()
-
-        'Generate a bunch of events for testing.
-
-    End Sub
+    Shared ReadOnly _events As List(Of CustomEvent) = New List(Of CustomEvent)()
 
     Public Function GetEvents() As ICollection(Of CustomEvent) Implements IEventService.GetEvents
         Return _events

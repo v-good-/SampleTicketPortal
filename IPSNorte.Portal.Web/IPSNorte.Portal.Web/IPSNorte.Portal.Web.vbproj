@@ -226,14 +226,19 @@
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\TicketingController.vb" />
+    <Compile Include="ExtensionMethods\EventExtension.vb" />
+    <Compile Include="ExtensionMethods\AlertExtension.vb" />
     <Compile Include="ExtensionMethods\TicketExtension.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="Models\AlertViewModel.vb" />
     <Compile Include="Models\CreateTicketViewModel.vb" />
+    <Compile Include="Models\EventViewModel.vb" />
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\MainViewModel.vb" />
     <Compile Include="Models\TicketGridModel.vb" />
     <Compile Include="Models\TicketViewModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -335,6 +340,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\resources\resources-ES.js" />
+    <Content Include="Scripts\resources\resources-EN.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -363,6 +370,7 @@
     <Content Include="Views\Shared\_LayoutNotLoggedIn.vbhtml" />
     <Content Include="Views\Ticketing\Index.vbhtml" />
     <Content Include="Views\Ticketing\CreateTicket.vbhtml" />
+    <Content Include="Views\Shared\_OpenTicketsCounter.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -115,7 +115,7 @@ Public Class TicketingController
         Dim model = New CreateTicketViewModel()
 
         'project number same as current user.
-        model.ProjectNumber = _userServiceClient.FindById(User.Identity.GetUserId()).ProjectNumber
+        model.ProjectNumber = _userServiceClient.FindByName(User.Identity.GetUserName()).ProjectNumber
 
         Return PartialView(model)
 
@@ -128,30 +128,40 @@ Public Class TicketingController
         
         If ModelState.IsValid Then
 
-            Dim filename As String = IO.Path.GetFileName(model.File.FileName)
-            Dim workingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
-
-            If (Not Directory.Exists(workingFolder)) Then
-                Directory.CreateDirectory(workingFolder)
-            End If
-            
-            Dim path As String = IO.Path.Combine(workingFolder, filename)
-            model.File.SaveAs(path)
-
             Dim ticket As New Ticket
-            ticket.CreatedBy = _userServiceClient.FindById(User.Identity.GetUserId())
+            ticket.CreatedBy = _userServiceClient.FindByName(User.Identity.GetUserName())
             ticket.CreatedDate = DateTime.Now
             ticket.Description = model.Description
             ticket.Priority = model.Priority
             ticket.ProjectNumber = model.ProjectNumber
             ticket.Status = TicketStatusEnum.Open 'always open if creating.
-            ticket.FileName = model.File.FileName
+            ticket.FileName = SaveFile(model.File)
 
             _ticketServiceClient.CreateTicket(ticket)
 
         End If
 
         Return RedirectToAction("Index", "Home")
+
+    End Function
+
+    Private Function SaveFile(file As HttpPostedFileBase) As String
+
+        If (Not IsNothing(file)) Then
+
+            Dim filename As String = IO.Path.GetFileName(File.FileName)
+            Dim workingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
+
+            If (Not Directory.Exists(workingFolder)) Then
+                Directory.CreateDirectory(workingFolder)
+            End If
+
+            Dim path As String = IO.Path.Combine(workingFolder, filename)
+            file.SaveAs(path)
+
+            Return path
+
+        End If
 
     End Function
 

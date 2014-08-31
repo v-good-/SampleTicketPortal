@@ -1,27 +1,28 @@
 ﻿@Imports IPSNorte.Portal.Web.Web.Resources
-@Code
-    ViewData("Title") = "Home Page"
+@Code    ViewData("Title") = "Home Page"
+
 End Code
 
 @ModelType MainViewModel
 
 <script type="text/javascript">
-    
+
     function CreateTicket() {
 
         var url = "/Ticketing/CreateTicket";
 
         $("#createTicketDialog").dialog(
-        {            
+        {
             open: function (event, ui) {
                 $(this).load(url);
             },
         });
     }
-
-
-
 </script>
+
+@Html.Partial("_OpenTicketsCounter", Model.OpenTicketsCount)
+
+
 <div class="jumbotron">
     <h1>@ApplicationName</h1>
     <p class="lead">@IndexPage_Intro</p>
@@ -51,7 +52,7 @@ End Code
 
     </div>
     <div class="col-md-4 remark">
-        <h2><span class="glyphicon glyphicon-calendar"></span> Events</h2>
+        <h2><span class="glyphicon glyphicon-calendar"></span> Alerts</h2>
         @Html.Partial("_Alerts", Model.Alerts)
     </div>
 </div>
@@ -61,11 +62,11 @@ End Code
         @Html.Partial("_TicketsBar")
     </div>
     <div class="col-md-4">
-        <h2><span class="glyphicon glyphicon-tags"></span> Open vs Closed</h2>
+        <h2><span class="glyphicon glyphicon-tags"></span> By status</h2>
         @Html.Partial("_TicketsPie")
     </div>
     <div class="col-md-4 remark">
-        <h2><span class="glyphicon glyphicon-bullhorn"></span> Alerts</h2>
+        <h2><span class="glyphicon glyphicon-bullhorn"></span> Events</h2>
 
         @Html.Partial("_Events", Model.Events)
     </div>

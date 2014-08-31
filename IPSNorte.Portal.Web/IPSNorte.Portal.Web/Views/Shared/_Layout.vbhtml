@@ -11,13 +11,30 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required:=False)
-    @Scripts.Render("~/bundles/jqgrid") 
-    @Scripts.Render("~/bundles/jqueryval") 
-    @Scripts.Render("~/bundles/flot") 
+    @Scripts.Render("~/bundles/jqgrid")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/flot")
 
     @Html.Partial("~/Views/Shared/_GA.vbhtml")
 
 
+    @Code
+
+        Dim currentLanguage = Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower()
+
+        If (currentLanguage.StartsWith("en")) Then
+        @<text>
+            <script src="~/Scripts/resources/resources-EN.js"></script></text>
+        ElseIf (currentLanguage.StartsWith("es")) Then
+        @<text>
+            <script src="~/Scripts/resources/resources-ES.js"></script></text>
+        End If
+
+    End Code
+    <script type="text/javascript">
+        var lang = "EN";
+
+    </script>
 
 </head>
 <body>
@@ -29,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(ApplicationName, "Index", "Home", New With { .area = "" }, New With { .class = "navbar-brand" })
+                @Html.ActionLink(ApplicationName, "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -49,6 +66,6 @@
         </footer>
     </div>
 
-   
+
 </body>
 </html>

@@ -3,8 +3,9 @@
 
     <script type="text/javascript">
         var data = [
-            { label: "Open", data: 34.5, color: "green" },
-            { label: "Closed", data: 65.5, color: "#80699B" },
+            { label: resources.ticketStatusOpen, data: 15, color: "green" },
+            { label: resources.ticketStatusInProgress, data: 20, color: "blue" },
+            { label: resources.ticketStatusClosed, data: 65, color: "red" },
         ];
 
         $(document).ready(function () {

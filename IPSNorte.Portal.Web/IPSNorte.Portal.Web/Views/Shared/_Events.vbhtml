@@ -1,8 +1,11 @@
-﻿<ul>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-</ul>
+﻿@ModelType ICollection(Of EventViewModel)
+
+@For Each theEvent In Model
+
+    @<div class="well">
+         <h4>
+             <span class=" glyphicon glyphicon-volume-up"></span>
+             @theEvent.Title
+         </h4> <span> @theEvent.EventDate.ToShortDateString </span> <span> @theEvent.Description </span>
+    </div>
+Next

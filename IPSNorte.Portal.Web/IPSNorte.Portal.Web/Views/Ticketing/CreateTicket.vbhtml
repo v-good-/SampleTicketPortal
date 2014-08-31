@@ -17,6 +17,7 @@
             @Html.ValidationMessageFor(Function(model) model.Description)
         </div>
     </div>
+@<br />
     @<div class="row">
         <div class="col-md-12">
 
@@ -27,6 +28,7 @@
 
         </div>
     </div>
+@<br />
     @<div class="row">
         <div class="col-md-12">
             @Html.LabelFor(Function(model) model.Priority)
@@ -36,6 +38,7 @@
 
         </div>
     </div>
+@<br />
     @<div class="row">
         <div class="col-md-12">
             <label for="fileToUpload">@IPSNorte.Portal.Web.Web.Resources.CreateTicketView_UploadFile</label>
@@ -43,6 +46,8 @@
             <input type="file" id="fileToUpload" name="File" />
         </div>
     </div>
+@<br />
+@<br />
     @<div class="row">
         <div class="col-md-12">
             <input type="button" value="@IPSNorte.Portal.Web.Web.Resources.CreateTicketView_CreateTicket" id="btnCreate" class=" btn btn-default dialog" />

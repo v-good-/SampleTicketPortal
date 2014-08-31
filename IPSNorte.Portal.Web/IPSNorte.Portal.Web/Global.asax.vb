@@ -39,19 +39,20 @@ Public Class MvcApplication
 
         LoadTickets(user)
 
-        LoadAlerts()
+        LoadAlerts(user)
+        LoadEvents()
 
     End Function
 
-    Private Shared Sub LoadAlerts()
+    Private Shared Sub LoadAlerts(user As ApplicationUser)
 
         Dim alertServiceClient = New AlertServiceClient()
-        
+
         For i As Integer = 0 To 10
             Dim alert As Alert = New Alert
             alert.AlertDate = DateTime.Today.AddDays(-i)
             alert.Description = String.Format("Alert number {0}", i)
-            alert.ProjectNumber = i Mod 3
+            alert.ProjectNumber = user.ProjectNumber
 
             alertServiceClient.CreateAlert(alert)
 

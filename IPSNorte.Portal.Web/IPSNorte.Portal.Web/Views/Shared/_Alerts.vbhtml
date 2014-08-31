@@ -1,8 +1,10 @@
-﻿<ul>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-    <li>Renovacion contrato proximo dia 12/10/2014</li>
-</ul>
+﻿@ModelType ICollection(Of AlertViewModel)
+
+@For Each alert In Model
+
+    @<span>@alert.AlertDate.ToShortDateString</span> 
+    @<text>-</text> 
+    @<span>@alert.Description</span>
+    @<br />
+
+Next

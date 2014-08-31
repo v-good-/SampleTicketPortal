@@ -8,7 +8,7 @@
 
     var data = [[0, 11], [1, 15], [2, 25], [3, 24]];
     var dataset = [{ data: data, color: "#5482FF" }];
-    var ticks = [[0, "Low"], [1, "Medium"], [2, "High"], [3, "Critical"]];
+    var ticks = [[0, resources.ticketPriorityLow], [1, resources.ticketPriorityMedium], [2, resources.ticketPriorityHigh], [3, resources.ticketPriorityCritical]];
 
     var options = {
         series: {

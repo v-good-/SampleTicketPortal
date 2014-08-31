@@ -27,7 +27,7 @@ Public Class TicketService
 
     End Sub
 
-    Private Function FilterTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket)
+    Private Function FilterTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As ICollection(Of Ticket)
         Dim currentRecords As IEnumerable(Of Ticket)
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
 
@@ -66,7 +66,7 @@ Public Class TicketService
         Return currentRecords.ToList()
     End Function
 
-    Public Function GetTicketsPaged(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As IList(Of Ticket) Implements ITicketService.GetTicketsPaged
+    Public Function GetTicketsPaged(ByVal size As Integer, ByVal page As Integer, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel, ByVal projectNumber As String, ByRef total As Integer) As ICollection(Of Ticket) Implements ITicketService.GetTicketsPaged
         Dim currentRecords As IEnumerable(Of Ticket)
         Dim pageIndex As Integer = page - 1
         Dim pageSize As Integer = size
@@ -77,14 +77,14 @@ Public Class TicketService
 
     End Function
 
-    Public Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket) Implements ITicketService.GetTickets
+    Public Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As ICollection(Of Ticket) Implements ITicketService.GetTickets
         Dim currentRecords As IEnumerable(Of Ticket)
         currentRecords = FilterTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
         Return currentRecords
     End Function
 
-    Public Function GetTickets(ByVal projectNumber As String) As IList(Of Ticket) Implements ITicketService.GetTickets
-        Return Tickets.Where(Function(m) m.ProjectNumber = projectNumber)
+    Public Function GetTickets(ByVal projectNumber As String) As ICollection(Of Ticket) Implements ITicketService.GetTickets
+        Return Tickets.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
     End Function
 
 End Class
