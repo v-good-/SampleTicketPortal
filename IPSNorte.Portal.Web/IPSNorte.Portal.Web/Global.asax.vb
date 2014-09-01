@@ -2,7 +2,6 @@
 Imports System.Web.Optimization
 Imports System.Runtime.Remoting
 Imports System.Threading.Tasks
-Imports System.ComponentModel.DataAnnotations
 Imports IPSNorte.Portal.eXpertisObjects
 Imports IPSNorte.Portal.Lib
 
@@ -17,31 +16,39 @@ Public Class MvcApplication
         BundleConfig.RegisterBundles(BundleTable.Bundles)
 
         RemotingConfiguration.Configure(Server.MapPath("Web.config"), False) 
-        InitializeData().Wait()
+
+        'TODO remove this sample data...
+        InitializeSampleData().Wait()
 
     End Sub
 
-    Private Async Function InitializeData() As Task
-        Dim user = New ApplicationUser() With {
-               .UserName = "test1@pasbridge.com",
-               .Email = "test1@pasbridge.com",
-               .FirstName = "John",
-               .LastName = "Doe",
-               .JobRole = "Director",
-               .Company = "Pasbridge",
-               .ProjectNumber = 23,
-               .PhoneNumber = 942889900,
-               .PhoneNumber2 = 699599499
-           }
+    Private Async Function InitializeSampleData() As Task
 
-        Dim userManager = New ApplicationUserManager(New CustomUserStore())
-        Await userManager.CreateAsync(user, "ASDFasdf1.")
+        Dim user As ApplicationUser = Await LoadUser()
 
         LoadTickets(user)
-
         LoadAlerts(user)
         LoadEvents()
 
+    End Function
+
+    Private Async Function LoadUser() As Task(Of ApplicationUser)
+
+        Dim user = New ApplicationUser() With {
+                .UserName = "test1@pasbridge.com",
+                .Email = "test1@pasbridge.com",
+                .FirstName = "John",
+                .LastName = "Doe",
+                .JobRole = "Director",
+                .Company = "Pasbridge",
+                .ProjectNumber = 23,
+                .PhoneNumber = 942889900,
+                .PhoneNumber2 = 699599499
+                }
+
+        Dim userManager = New ApplicationUserManager(New CustomUserStore())
+        Await userManager.CreateAsync(user, "ASDFasdf1.")
+        Return user
     End Function
 
     Private Shared Sub LoadAlerts(user As ApplicationUser)
@@ -86,7 +93,6 @@ Public Class MvcApplication
             Dim ticket As Ticket = New Ticket()
             ticket.CreatedDate = Now.AddMinutes(-i * 3)
             ticket.CreatedBy = user.ToServiceUser()
-            ticket.Id = System.Guid.NewGuid.ToString()
             ticket.Description = "Sample ticket " + i.ToString() + " " + WeekdayName(Weekday(DateTime.Now.AddDays(CInt(Math.Ceiling(Rnd() * 7)))))
             ticket.Priority = CType(CInt(Math.Ceiling(Rnd() * 3)), TicketPriorityEnum)
             ticket.ProjectNumber = CInt(Math.Ceiling(Rnd() * 100))

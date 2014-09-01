@@ -10,9 +10,10 @@ Public Class EventServiceClient
     Dim _eventService As IEventService
 
     Public Sub New()
-
         _eventService = New EventService()
-
+    End Sub
+    Public Sub New(eventService As IEventService)
+        _eventService = eventService
     End Sub
 
     Public Sub CreateEvent(theEvent As CustomEvent)

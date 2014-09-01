@@ -12,6 +12,14 @@ Public Class TicketService
     ''' </summary>
     Public Sub CreateTicket(ticket As Ticket) Implements ITicketService.CreateTicket
 
+        If (Not IsNothing(ticket.Id)) Then
+            Throw new ArgumentException("Error upon creating a new ticket, the given ticket already has an Id")
+        End If
+
+        If (Tickets.Any(Function(i) i.Id = ticket.Id)) Then
+            Throw New ArgumentException("Error upon creating a new ticket, a ticket with same Id already exists.")
+        End If
+
         ticket.Id = Guid.NewGuid().ToString()
         Tickets.Add(ticket)
 

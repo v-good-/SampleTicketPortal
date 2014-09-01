@@ -1,6 +1,5 @@
 ﻿@ModelType Integer
 
 <div class="ticketCounter">
-    Open tickets
-    <h2>@Model</h2>
+    Open tickets<h3>@Model</h3>
 </div>

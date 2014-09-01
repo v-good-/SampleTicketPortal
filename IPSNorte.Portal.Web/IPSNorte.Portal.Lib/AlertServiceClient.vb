@@ -7,12 +7,14 @@ Imports System.Runtime.Remoting
 
 Public Class AlertServiceClient
 
-    Dim _alertService As AlertService
+    Dim _alertService As IAlertService
 
     Public Sub New()
-
         _alertService = New AlertService()
+    End Sub
 
+    Public Sub New(alertService As IAlertService)
+        _alertService = alertService
     End Sub
 
     Public Sub CreateAlert(alert As Alert)

@@ -6,9 +6,11 @@ Public Class UserServiceClient
     Dim _userService As IUserService
 
     Public Sub New()
-        
         _userService = New UserService()
+    End Sub
 
+    Public Sub New(userService As IUserService)
+        _userService = userService
     End Sub
 
     Public Function RegisterNewUser(user As User) As Boolean

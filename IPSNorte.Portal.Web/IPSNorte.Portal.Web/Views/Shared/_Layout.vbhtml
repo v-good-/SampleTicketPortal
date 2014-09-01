@@ -1,11 +1,20 @@
 ﻿@Imports IPSNorte.Portal.Web.Web.Resources
+@Code
+
+    Dim appName = ApplicationName
+
+    If (Not IsNothing(Request.QueryString("app"))) Then
+        appName = Request.QueryString("app")
+    End If
+
+    End Code
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - @ApplicationName</title>
+    <title>@ViewBag.Title - @appName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -31,11 +40,6 @@
         End If
 
     End Code
-    <script type="text/javascript">
-        var lang = "EN";
-
-    </script>
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -46,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(ApplicationName, "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
+                @Html.ActionLink(appName, "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
