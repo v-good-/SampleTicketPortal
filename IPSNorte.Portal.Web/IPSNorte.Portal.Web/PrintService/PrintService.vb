@@ -16,11 +16,22 @@ Public Class PrintService
                     Doc.Open()
                     Doc.NewPage()
 
-                    Dim table As New PdfPTable(8)
+                    Dim table As New PdfPTable(7)
+
+                    Dim intTblWidth() As Integer = {25, 75, 75, 200, 30, 45, 45}
+
+                    table.SetWidths(intTblWidth)
+
+                    table.AddCell("Project #")
+                    table.AddCell("Created")
+                    table.AddCell("Created By")
+                    table.AddCell("Description")
+                    table.AddCell("#")
+                    table.AddCell("Priority")
+                    table.AddCell("Status")
 
                     For Each ticketViewModel As TicketViewModel In tickets
 
-                        table.AddCell(ticketViewModel.ID)
                         table.AddCell(ticketViewModel.ProjectNumber)
                         table.AddCell(ticketViewModel.CreatedDate)
                         table.AddCell(ticketViewModel.CreatedBy)

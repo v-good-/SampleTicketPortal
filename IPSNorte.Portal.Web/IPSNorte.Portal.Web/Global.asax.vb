@@ -58,7 +58,7 @@ Public Class MvcApplication
         For i As Integer = 0 To 10
             Dim alert As Alert = New Alert
             alert.AlertDate = DateTime.Today.AddDays(-i)
-            alert.Description = String.Format("Alert number {0}", i)
+            alert.Description = String.Format("{0} - Donec interdum eros et risus hendrerit luctus. Nulla a mollis nulla. Integer imperdiet iaculis mi eget consectetur. Sed ligula turpis, tincidunt id velit vitae, viverra suscipit dui. Aliquam eleifend faucibus lacus non molestie. Aenean metus purus, accumsan eu dui id, tempor fringilla lorem. Vestibulum dignissim, ante a gravida maximus, orci augue ultricies nisi, et tempor lectus ligula vel erat.", i)
             alert.ProjectNumber = user.ProjectNumber
 
             alertServiceClient.CreateAlert(alert)
@@ -75,8 +75,9 @@ Public Class MvcApplication
             Dim theEvent = New CustomEvent()
 
             theEvent.EventDate = DateTime.Today.AddDays(-i)
-            theEvent.Description = String.Format("Event description for event {0}", i)
+            theEvent.Description = String.Format("{0} - Donec arcu leo, tempor ac risus nec, auctor suscipit mi. Vivamus metus felis, pellentesque eu elementum quis, tristique vitae lacus. Proin laoreet lorem vitae elit tempor, dictum tincidunt tellus ultrices. Suspendisse mattis metus ut enim venenatis, aliquam tempus enim mollis. Aliquam metus dolor, suscipit vel justo vel, sollicitudin faucibus nulla. Quisque vel augue mauris. Phasellus non orci vitae arcu commodo rutrum ac eget justo. Curabitur aliquam at lacus vitae venenatis.", i)
             theEvent.Title = String.Format("Event title {0}", i)
+            theEvent.Id = Guid.NewGuid().ToString()
 
             eventServiceClient.CreateEvent(theEvent)
 
@@ -97,6 +98,15 @@ Public Class MvcApplication
             ticket.Priority = CType(CInt(Math.Ceiling(Rnd() * 3)), TicketPriorityEnum)
             ticket.ProjectNumber = CInt(Math.Ceiling(Rnd() * 100))
             ticket.Status = CType(CInt(Math.Ceiling(Rnd() * 2)), TicketStatusEnum)
+            ticket.Number = i
+            ticket.Entries = New List(Of TicketEntry)()
+
+            For ii As Integer = 0 To 10
+                ticket.Entries.Add(New TicketEntry() With {
+                                   .Comment = "I don't thinks this is working as expected.. blah blah...",
+                                   .CreatedBy = user.ToServiceUser(),
+                                   .CreatedDate = DateTime.Now})
+            Next (ii)
 
             ticketServiceClient.CreateTicket(ticket)
 

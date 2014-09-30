@@ -24,6 +24,12 @@ Public Class TicketServiceClient
 
     End Sub
 
+    Public Sub AddComment(ticketEntry As TicketEntry, ticketId As String)
+
+        _ticketService.AddComment(ticketEntry, ticketId)
+
+    End Sub
+
     Public Sub DeleteTicket(ticket As Ticket)
 
         'This should be done at the service itself, done here only to illustrate the usage of Mocks in Unit testing.
@@ -47,6 +53,10 @@ Public Class TicketServiceClient
 
     Public Function GetTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As IList(Of Ticket)
         Return _ticketService.GetTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
+    End Function
+
+    Public Function GetTicket(ByVal id As String) As Ticket
+        Return _ticketService.GetTicket(id)
     End Function
 
 End Class

@@ -1,10 +1,14 @@
 ﻿@Imports IPSNorte.Portal.Web.Web.Resources
+@Imports IPSNorte.Portal.Lib
+
 @Code
+    
 
     Dim appName = ApplicationName
 
     If (Not IsNothing(Request.QueryString("app"))) Then
         appName = Request.QueryString("app")
+
     End If
 
     End Code
@@ -42,7 +46,16 @@
     End Code
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @Code
+        Dim userServiceClient = New UserServiceClient()
+        Dim user = userServiceClient.FindByName(Me.User.Identity.Name)
+        
+        If Not user.AcceptCookies Then
+            @Html.Partial("_CookieWarning")
+        End If
+    End Code
+
+<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -57,7 +70,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                    <li>@Html.ActionLink("Download", "Download", "Home")</li>
+ </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

@@ -1,7 +1,7 @@
 ﻿@ModelType CreateTicketViewModel
 @Scripts.Render("~/bundles/jqueryval")
 
-<script src="~/Scripts/create-ticket.js"></script>
+<script src="~/Scripts/App/create-ticket.js"></script>
 
 @Using (Html.BeginForm("CreateTicket", "Ticketing", FormMethod.Post, New With {.id = "createForm", .enctype = "multipart/form-data"}))
 

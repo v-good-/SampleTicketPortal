@@ -222,4 +222,37 @@
   <data name="PageTitle_TicketsIndex" xml:space="preserve">
     <value>Tickets</value>
   </data>
+  <data name="CookieWarningView_Accept" xml:space="preserve">
+    <value>I accept</value>
+  </data>
+  <data name="CookieWarningView_Message" xml:space="preserve">
+    <value>This application uses cookies, both own and third party's. You can read our {0}. By continuing we consider you accept it's usage.</value>
+  </data>
+  <data name="CookieWarningView_PrivacyPolicy" xml:space="preserve">
+    <value>privacy policy</value>
+  </data>
+  <data name="FileDescription" xml:space="preserve">
+    <value>File description</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>File size</value>
+  </data>
+  <data name="LoginView_Contact" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="LoginView_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginView_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="PageTitle_TicketDetails" xml:space="preserve">
+    <value>Ticket Details</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

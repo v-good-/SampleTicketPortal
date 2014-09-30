@@ -8,6 +8,7 @@
     <title>@ViewBag.Title - @ApplicationName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     @Html.Partial("~/Views/Shared/_GA.vbhtml")
 </head>
 <body>
@@ -22,7 +23,7 @@
                 @Html.ActionLink(ApplicationName, "Index", "Home", New With { .area = "" }, New With { .class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @Html.Partial("_LoginPartial")
+               
             </div>
         </div>
     </div>

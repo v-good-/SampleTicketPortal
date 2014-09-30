@@ -226,6 +226,7 @@
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\TicketingController.vb" />
+    <Compile Include="ExtensionMethods\DownloadExtension.vb" />
     <Compile Include="ExtensionMethods\EventExtension.vb" />
     <Compile Include="ExtensionMethods\AlertExtension.vb" />
     <Compile Include="ExtensionMethods\TicketExtension.vb" />
@@ -235,7 +236,9 @@
     <Compile Include="Helpers\EnumHelper.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AlertViewModel.vb" />
+    <Compile Include="Models\TicketCommentViewModel.vb" />
     <Compile Include="Models\CreateTicketViewModel.vb" />
+    <Compile Include="Models\DownloadViewModel.vb" />
     <Compile Include="Models\EventViewModel.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\MainViewModel.vb" />
@@ -273,18 +276,32 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\Tickets_page.jpg" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_100_000000_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_55_ffffff_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_95_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_0_cccccc_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
@@ -310,9 +327,10 @@
     </None>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="References\itextsharp.dll" />
+    <Content Include="Scripts\App\dialogs.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\create-ticket.js" />
+    <Content Include="Scripts\App\create-ticket.js" />
     <Content Include="Scripts\flot\excanvas.js" />
     <Content Include="Scripts\flot\excanvas.min.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.js" />
@@ -365,7 +383,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ticketing.js" />
+    <Content Include="Scripts\App\ticketing.js" />
     <Content Include="Views\Account\_ChangePasswordPartial.vbhtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.vbhtml" />
@@ -377,7 +395,7 @@
     <Content Include="Views\Account\ForgotPasswordConfirmation.vbhtml" />
     <Content Include="Views\Account\Login.vbhtml" />
     <Content Include="Views\Account\Manage.vbhtml" />
-    <Content Include="Views\Account\Register.vbhtml" />
+    <Content Include="Views\Account\_Register.vbhtml" />
     <Content Include="Views\Account\ResetPassword.vbhtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
@@ -390,6 +408,12 @@
     <Content Include="Views\Ticketing\Index.vbhtml" />
     <Content Include="Views\Ticketing\CreateTicket.vbhtml" />
     <Content Include="Views\Shared\_OpenTicketsCounter.vbhtml" />
+    <Content Include="Views\Shared\_CookieWarning.vbhtml" />
+    <Content Include="Views\Home\Download.vbhtml" />
+    <Content Include="Views\Ticketing\TicketDetails.vbhtml" />
+    <Content Include="Views\Ticketing\AddComment.vbhtml" />
+    <Content Include="Views\Ticketing\_TicketEntry.vbhtml" />
+    <Content Include="Views\Home\Events.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

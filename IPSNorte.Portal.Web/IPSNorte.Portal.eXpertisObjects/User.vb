@@ -21,4 +21,5 @@ Public Class User
 
     Property ProjectNumber() As String
 
+    Property AcceptCookies() As Boolean
 End Class

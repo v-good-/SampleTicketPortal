@@ -2,6 +2,8 @@
 
     Property Id As String
 
+    Property Number() As Integer
+
     Property Description() As String
     
     Property ProjectNumber() As String
@@ -16,5 +18,8 @@
 
     Property FileName() As String
 
+    Property FileId() As String
+
+    Property Entries() As List(Of TicketEntry)
 
 End Class

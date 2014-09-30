@@ -21,7 +21,26 @@ Public Class TicketService
         End If
 
         ticket.Id = Guid.NewGuid().ToString()
+
+        For Each ticketEntry As TicketEntry In ticket.Entries
+            ticketEntry.Id = Guid.NewGuid().ToString()
+            ticketEntry.TicketId = ticket.Id
+        Next
+
         Tickets.Add(ticket)
+
+    End Sub
+
+    Public Sub AddComment(ByVal ticketEntry As TicketEntry, ByVal ticketId As String) Implements ITicketService.AddComment
+
+        Dim ticket = Me.GetTicket(ticketId)
+
+        'TODO validate this user (ticketEntry.CreatedBy) can actually add comments to this ticket..
+
+        ticketEntry.TicketId = ticket.Id
+        ticketEntry.Id = Guid.NewGuid().ToString()
+
+        ticket.Entries.Add(ticketEntry)
 
     End Sub
 
@@ -38,8 +57,7 @@ Public Class TicketService
     Private Function FilterTickets(ByVal projectNumber As String, ByVal orderBy As String, ByVal orderByDirection As String, ByVal searchString As String, ByVal searchModel As SearchModel) As ICollection(Of Ticket)
         Dim currentRecords As IEnumerable(Of Ticket)
         Dim prop As PropertyInfo = New Ticket().GetType().GetProperty(orderBy)
-
-
+        
         currentRecords = Tickets.Where(Function(m) m.ProjectNumber = projectNumber).ToList()
 
         If (orderByDirection.Equals("desc")) Then
@@ -89,6 +107,11 @@ Public Class TicketService
         Dim currentRecords As IEnumerable(Of Ticket)
         currentRecords = FilterTickets(projectNumber, orderBy, orderByDirection, searchString, searchModel)
         Return currentRecords
+    End Function
+
+    Public Function GetTicket(ByVal id As String) As Ticket Implements ITicketService.GetTicket
+        Return Tickets.FirstOrDefault(Function(m) m.Id = id)
+
     End Function
 
     Public Function GetTickets(ByVal projectNumber As String) As ICollection(Of Ticket) Implements ITicketService.GetTickets

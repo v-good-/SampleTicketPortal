@@ -106,6 +106,33 @@ Namespace Web.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to I accept.
+        '''</summary>
+        Public ReadOnly Property CookieWarningView_Accept() As String
+            Get
+                Return ResourceManager.GetString("CookieWarningView_Accept", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to This application uses cookies, both own and third party&apos;s. You can read our {0}. By continuing we consider you accept it&apos;s usage..
+        '''</summary>
+        Public ReadOnly Property CookieWarningView_Message() As String
+            Get
+                Return ResourceManager.GetString("CookieWarningView_Message", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to privacy policy.
+        '''</summary>
+        Public ReadOnly Property CookieWarningView_PrivacyPolicy() As String
+            Get
+                Return ResourceManager.GetString("CookieWarningView_PrivacyPolicy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Create Ticket.
         '''</summary>
         Public ReadOnly Property CreateTicketView_CreateTicket() As String
@@ -178,11 +205,65 @@ Namespace Web.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to File description.
+        '''</summary>
+        Public ReadOnly Property FileDescription() As String
+            Get
+                Return ResourceManager.GetString("FileDescription", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to File name.
+        '''</summary>
+        Public ReadOnly Property FileName() As String
+            Get
+                Return ResourceManager.GetString("FileName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to File size.
+        '''</summary>
+        Public ReadOnly Property FileSize() As String
+            Get
+                Return ResourceManager.GetString("FileSize", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Welcome to the IPS Ticketing Portal, here you will be able to see progress of open tickets, report issues and see blah... blah....
         '''</summary>
         Public ReadOnly Property IndexPage_Intro() As String
             Get
                 Return ResourceManager.GetString("IndexPage_Intro", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Contact Us.
+        '''</summary>
+        Public ReadOnly Property LoginView_Contact() As String
+            Get
+                Return ResourceManager.GetString("LoginView_Contact", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Login.
+        '''</summary>
+        Public ReadOnly Property LoginView_Login() As String
+            Get
+                Return ResourceManager.GetString("LoginView_Login", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Register.
+        '''</summary>
+        Public ReadOnly Property LoginView_Register() As String
+            Get
+                Return ResourceManager.GetString("LoginView_Register", resourceCulture)
             End Get
         End Property
         
@@ -229,6 +310,15 @@ Namespace Web.Resources
         Public ReadOnly Property ManageUserViewModel_OldPassword_Current_password() As String
             Get
                 Return ResourceManager.GetString("ManageUserViewModel_OldPassword_Current_password", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Ticket Details.
+        '''</summary>
+        Public ReadOnly Property PageTitle_TicketDetails() As String
+            Get
+                Return ResourceManager.GetString("PageTitle_TicketDetails", resourceCulture)
             End Get
         End Property
         
@@ -374,6 +464,15 @@ Namespace Web.Resources
         Public ReadOnly Property RegiterPage_CaptchaRequiredText() As String
             Get
                 Return ResourceManager.GetString("RegiterPage_CaptchaRequiredText", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Public ReadOnly Property String1() As String
+            Get
+                Return ResourceManager.GetString("String1", resourceCulture)
             End Get
         End Property
     End Module

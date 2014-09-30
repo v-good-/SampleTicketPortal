@@ -1,5 +1,7 @@
 ﻿Public Class CustomEvent
 
+    Property Id() As String
+
     Property Title() As String
 
     Property Description() As String

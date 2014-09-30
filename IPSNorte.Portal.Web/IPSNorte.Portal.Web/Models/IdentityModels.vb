@@ -32,6 +32,7 @@ Public Class ApplicationUser
         applicationUser.ProjectNumber = user.ProjectNumber
         applicationUser.Company = user.CompanyName
         applicationUser.Id = user.Id
+        applicationUser.AcceptCookies = user.AcceptCookies
         Return applicationUser
     End Function
 
@@ -48,6 +49,7 @@ Public Class ApplicationUser
         user.ProjectNumber = Me.ProjectNumber
         user.CompanyName = Me.Company
         user.Id = Me.Id
+        user.AcceptCookies = Me.AcceptCookies
         Return user
 
     End Function
@@ -64,6 +66,7 @@ Public Class ApplicationUser
     
     Public Property FirstName() As String
 
+    Public Property AcceptCookies() As Boolean
 
 End Class
 

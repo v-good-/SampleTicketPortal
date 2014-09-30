@@ -5,13 +5,12 @@ Imports IPSNorte.Portal.eXpertisObjects
 Imports IPSNorte.Portal.Lib
 Imports Newtonsoft.Json
 
-
-
 Public Class TicketingController
     Inherits Controller
 
     ReadOnly _ticketServiceClient As TicketServiceClient = New TicketServiceClient()
     ReadOnly _userServiceClient As UserServiceClient = New UserServiceClient()
+    ReadOnly _downloadServiceClient As DownloadService = New DownloadService()
 
     ' GET: /Ticketing
     Function Index() As ActionResult
@@ -51,7 +50,7 @@ Public Class TicketingController
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
-        projectNumber = _userServiceClient.FindById(User.Identity.GetUserId()).ProjectNumber
+        projectNumber = _userServiceClient.FindByName(User.Identity.Name).ProjectNumber
 
         If (Not String.IsNullOrEmpty(filters)) Then
             searchTerms = JsonConvert.DeserializeObject(Of SearchModel)(filters)
@@ -66,9 +65,10 @@ Public Class TicketingController
         Return Json(fileName, JsonRequestBehavior.AllowGet)
 
     End Function
+
     <HttpGet()>
     Function PrintTicketsToXls(sidx As String, sord As String, searchString As String, filters As String) As ActionResult
-      
+
         Dim projectNumber As String
         Dim searchTerms As SearchModel
 
@@ -87,7 +87,6 @@ Public Class TicketingController
         Return Json(fileName, JsonRequestBehavior.AllowGet)
 
     End Function
-
 
     <HttpGet()>
     Function DownloadFile(fileName As String) As ActionResult
@@ -121,11 +120,10 @@ Public Class TicketingController
 
     End Function
 
-
     <HttpPost()>
     <ValidateAntiForgeryToken>
     Function CreateTicket(model As CreateTicketViewModel) As ActionResult
-        
+
         If ModelState.IsValid Then
 
             Dim ticket As New Ticket
@@ -135,7 +133,9 @@ Public Class TicketingController
             ticket.Priority = model.Priority
             ticket.ProjectNumber = model.ProjectNumber
             ticket.Status = TicketStatusEnum.Open 'always open if creating.
-            ticket.FileName = SaveFile(model.File)
+
+            ticket.FileName = IO.Path.GetFileName(model.File.FileName)
+            ticket.FileId = _downloadServiceClient.SaveFile(model.File)
 
             _ticketServiceClient.CreateTicket(ticket)
 
@@ -145,27 +145,44 @@ Public Class TicketingController
 
     End Function
 
-    Private Function SaveFile(file As HttpPostedFileBase) As String
+    <HttpGet()>
+    Function AddComment(ByVal id As String) As ActionResult
 
-        If (Not IsNothing(file)) Then
+        Dim model = New TicketCommentViewModel()
+        model.TicketId = id
 
-            Dim filename As String = IO.Path.GetFileName(File.FileName)
-            Dim workingFolder = ConfigurationManager.AppSettings("TicketFilesFolder")
-
-            If (Not Directory.Exists(workingFolder)) Then
-                Directory.CreateDirectory(workingFolder)
-            End If
-
-            Dim path As String = IO.Path.Combine(workingFolder, filename)
-            file.SaveAs(path)
-
-            Return path
-
-        End If
+        Return PartialView(model)
 
     End Function
 
+    <HttpPost()>
+    <ValidateAntiForgeryToken>
+    Function AddComment(model As TicketCommentViewModel) As ActionResult
 
+        If ModelState.IsValid Then
 
+            Dim ticketEntry = New TicketEntry()
+
+            ticketEntry.Comment = model.Description
+            ticketEntry.CreatedBy = _userServiceClient.FindByName(User.Identity.GetUserName())
+            ticketEntry.CreatedDate = DateTime.Now
+
+            ticketEntry.FileName = IO.Path.GetFileName(model.File.FileName)
+            ticketEntry.FileId = _downloadServiceClient.SaveFile(model.File)
+
+            _ticketServiceClient.AddComment(ticketEntry, model.TicketId)
+
+        End If
+
+        Return RedirectToAction("TicketDetails", "Ticketing", New With {.id = model.TicketId})
+
+    End Function
+
+    Function TicketDetails(id As String)
+
+        Dim ticket = _ticketServiceClient.GetTicket(id).ToTicketViewModel()
+        Return View(ticket)
+
+    End Function
 
 End Class

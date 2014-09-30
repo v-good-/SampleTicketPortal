@@ -47,6 +47,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,8 +65,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownloadService.vb" />
     <Compile Include="EventServiceClient.vb" />
     <Compile Include="AlertServiceClient.vb" />
+    <Compile Include="Model\FileItem.vb" />
     <Compile Include="TicketServiceClient.vb" />
     <Compile Include="UserServiceClient.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

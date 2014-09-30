@@ -73,6 +73,7 @@
     <Compile Include="Services\EventService.vb" />
     <Compile Include="Services\AlertService.vb" />
     <Compile Include="Ticket.vb" />
+    <Compile Include="TicketEntry.vb" />
     <Compile Include="TicketPriorityEnum.vb" />
     <Compile Include="Services\TicketService.vb" />
     <Compile Include="TicketStatusEnum.vb" />
