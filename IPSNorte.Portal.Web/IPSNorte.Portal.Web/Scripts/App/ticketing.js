@@ -75,7 +75,7 @@ $(document).ready(function () {
     showGrid();
 
     $("#search-button").button().click(function () {
-        searchString = $.trim($("#search-string").val()); 
+        var searchString = $.trim($("#search-string").val()); 
             $("#ticketingGrid").jqGrid('setGridParam', { url: '/Ticketing/GetTickets?searchString=' + searchString });  
             $("#ticketingGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid'); 
     });
@@ -130,10 +130,45 @@ $(document).ready(function () {
         });
     });
 
-    $("#advancedSearch-button").button().click(function () {
-        $("#advancedSearch-div").toggle();
+    $("#advancedSearch-menu-button").button().click(function () {
+        $("#advancedSearch-div").slideToggle();
     });
-   
+
+    $("#advancedSearch-button").button().click(function () {
+        var status = $.trim($("#status:checked").val());
+        var priority = $.trim($("#priority:checked").val());
+        var createdDate = $.trim($("#createdDate").val());
+        var createdBy = $("#createdBy").val();
+
+        var filters = {
+            groupOp: "AND",
+            rules: [
+                {
+                    field: "Status",
+                    op: "eq",
+                    data: status
+                },
+                {
+                    field: "Priority",
+                    op: "eq",
+                    data: priority
+                },
+                {
+                    field: "CreatedDate",
+                    op: "eq",
+                    data: createdDate
+                },
+                {
+                    field: "CreatedBy",
+                    op: "eq",
+                    data: createdBy
+                }
+            ]
+        }
+        $("#ticketingGrid").jqGrid('setGridParam', { url: '/Ticketing/GetTickets?filters=' + JSON.stringify(filters) });
+        $("#ticketingGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
+    });
+
 });
 
 function returnHyperLink(cellValue, options, rowdata, action) 

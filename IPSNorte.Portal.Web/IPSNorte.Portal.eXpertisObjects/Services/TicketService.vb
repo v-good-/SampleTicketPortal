@@ -73,19 +73,22 @@ Public Class TicketService
         If (Not searchModel Is Nothing) Then
             For Each searchTerm As SearchRule In searchModel.rules
 
+                If (Not String.IsNullOrWhiteSpace(searchTerm.data)) Then
+                    Select Case (searchTerm.field.ToLower())
+                        Case "createdby"
+                            currentRecords = currentRecords.Where(Function(m) m.CreatedBy.Id = searchTerm.data Or m.CreatedBy.LastName.Contains(searchTerm.data) Or m.CreatedBy.FirstName.Contains(searchTerm.data))
+                        Case "priority"
+                            currentRecords = currentRecords.Where(Function(m) m.Priority.ToString().ToLower().Contains(searchTerm.data.ToLower()))
+                        Case "status"
+                            currentRecords = currentRecords.Where(Function(m) m.Status.ToString().ToLower().Contains(searchTerm.data.ToLower()))
+                        Case "createddate"
+                            currentRecords = currentRecords.Where(Function(m) m.CreatedDate.Date = DateTime.Parse(searchTerm.data).Date)
 
-                Select Case (searchTerm.field.ToLower())
-                    Case "createdby"
-                        currentRecords = currentRecords.Where(Function(m) m.CreatedBy.LastName.Contains(searchTerm.data) Or m.CreatedBy.FirstName.Contains(searchTerm.data))
-                    Case "priority"
-                        currentRecords = currentRecords.Where(Function(m) m.Priority.ToString().ToLower().Contains(searchTerm.data.ToLower()))
-                    Case "status"
-                        currentRecords = currentRecords.Where(Function(m) m.Status.ToString().ToLower().Contains(searchTerm.data.ToLower()))
-
-                    Case Else
-                        Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
-                        currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
-                End Select
+                        Case Else
+                            Dim searchProp As PropertyInfo = New Ticket().GetType().GetProperty(searchTerm.field)
+                            currentRecords = currentRecords.Where(Function(m) searchProp.GetValue(m).ToString().Contains(searchTerm.data))
+                    End Select
+                End If
             Next
         End If
 

@@ -14,7 +14,23 @@ Public Class TicketingController
 
     ' GET: /Ticketing
     Function Index() As ActionResult
-        Return View()
+
+        Dim model As List(Of UserViewModel) = New List(Of UserViewModel)()
+
+        Dim projectNumber = _userServiceClient.FindByName(User.Identity.GetUserName()).ProjectNumber
+
+        Dim tickets = _ticketServiceClient.GetTickets(projectNumber)
+
+        For Each ticket As Ticket In tickets
+            Dim userViewModel As UserViewModel = New UserViewModel() With {.FullName = ticket.CreatedBy.FirstName + " " + ticket.CreatedBy.LastName, .Id = ticket.CreatedBy.Id}
+            
+            If (Not model.Contains(userViewModel)) Then
+                model.Add(userViewModel)
+            End If
+        Next
+
+
+        Return View(model)
     End Function
 
     Function GetTickets(sidx As String,
